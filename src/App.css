@@ -1,38 +1,91 @@
+:root {
+    /* Dark theme */
+    --dark-background: #222;
+    --dark-foregeound: #ddd;
+    --dark-ltbackground: #444;
+    --dark-border: #aaa;
+    /* Light theme */
+    --light-background: #fff;
+    --light-foregeound: #222;
+    --light-ltbackground: #ddd;
+    --light-border: #555;
+    /* Defaults */
+    --current-background: var(--light-background);
+    --current-foreground: var(--light-foregeound);
+    --current-ltbackground: var(--light-ltbackground);
+    --current-border: var(--light-border);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --current-background: var(--dark-background);
+        --current-foreground: var(--dark-foregeound);
+        --current-ltbackground: var(--dark-ltbackground);
+        --current-border: var(--dark-border);
+    }
+}
+
+body {
+    background-color: var(--current-background);
+    color: var(--current-foreground);
+}
+
 .App {
-  text-align: center;
+    background-color: var(--current-background);
+    color: var(--current-foreground);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.RunGame {
+    margin: 0.3em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.RunGameButton {
+    -webkit-animation: RunGameButton_pulsing 10s infinite;
+    animation: RunGameButton_pulsing 10s infinite;
+    background: ButtonFace;
+    border-radius: 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+@-webkit-keyframes RunGameButton_pulsing {
+    0% {
+        background: ButtonFace;
+    }
+    41% {
+        background: ButtonFace;
+    }
+    44% {
+        background-color: rgb(255, 255, 64);
+    }
+    47% {
+        background-color: rgb(255, 64, 64);
+    }
+    50% {
+        background: ButtonFace;
+    }
+    100% {
+        background: ButtonFace;
+    }
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes RunGameButton_pulsing {
+    0% {
+        background: ButtonFace;
+    }
+    41% {
+        background: ButtonFace;
+    }
+    44% {
+        background-color: rgb(255, 255, 64);
+    }
+    47% {
+        background-color: rgb(255, 64, 64);
+    }
+    50% {
+        background: ButtonFace;
+    }
+    100% {
+        background: ButtonFace;
+    }
 }
