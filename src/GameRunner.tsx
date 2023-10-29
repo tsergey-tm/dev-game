@@ -1,6 +1,6 @@
 import React from "react";
 import {useGameSettingsContext} from "./GameSettingsContext";
-import {GameResult, useGameResultContext} from "./GameResultContext";
+import {GameResult, Task, useGameResultContext} from "./GameResultContext";
 import TaskGenerator from "./TaskGenerator";
 
 export const GameRunner = () => {
@@ -9,112 +9,92 @@ export const GameRunner = () => {
     const {gameResult, setGameResult} = useGameResultContext();
 
     const moveEmptyTesting = (newGameResult: GameResult) => {
-        let col = newGameResult.cols[newGameResult.testerColIndex - 1];
-        for (let i = 0; i < col.length;) {
-            if (col[i].developer + col[i].tester === 0) {
-                const task = col.splice(i, 1)[0];
-                task.endWeek = newGameResult.week;
-                newGameResult.cols[newGameResult.testerColIndex + 1].push(task);
-            } else {
-                i++;
+
+        const process = (col: Task[]) => {
+            for (let i = 0; i < col.length;) {
+                if (col[i].developer + col[i].tester === 0) {
+                    const task = col.splice(i, 1)[0];
+                    task.endWeek = newGameResult.week;
+                    newGameResult.cols[newGameResult.testerColIndex + 1].push(task);
+                } else {
+                    i++;
+                }
             }
-        }
-        col = newGameResult.cols[newGameResult.testerColIndex];
-        for (let i = 0; i < col.length;) {
-            if (col[i].tester === 0) {
-                const task = col.splice(i, 1)[0];
-                task.endWeek = newGameResult.week;
-                newGameResult.cols[newGameResult.testerColIndex + 1].push(task);
-            } else {
-                i++;
-            }
-        }
+        };
+
+        process(newGameResult.cols[newGameResult.testerColIndex - 1]);
+        process(newGameResult.cols[newGameResult.testerColIndex]);
     }
 
     const moveEmptyDev = (newGameResult: GameResult) => {
-        let col = newGameResult.cols[newGameResult.developerColIndex - 1];
-        for (let i = 0; i < col.length;) {
-            if (col[i].developer + col[i].editor === 0) {
-                newGameResult.cols[newGameResult.developerColIndex + 1].push(...col.splice(i, 1));
-            } else {
-                i++;
+
+        const process = (col: Task[]) => {
+            for (let i = 0; i < col.length;) {
+                if (col[i].developer + col[i].editor === 0) {
+                    newGameResult.cols[newGameResult.developerColIndex + 1].push(...col.splice(i, 1));
+                } else {
+                    i++;
+                }
             }
-        }
-        col = newGameResult.cols[newGameResult.developerColIndex];
-        for (let i = 0; i < col.length;) {
-            if (col[i].developer === 0) {
-                // Переносим в тестирование, чтобы правильно закрыть задачу.
-                newGameResult.cols[newGameResult.developerColIndex].push(...col.splice(i, 1));
-            } else {
-                i++;
-            }
-        }
+        };
+
+        process(newGameResult.cols[newGameResult.developerColIndex - 1]);
+        process(newGameResult.cols[newGameResult.developerColIndex]);
         moveEmptyTesting(newGameResult);
     }
 
     const moveEmptyEditing = (newGameResult: GameResult) => {
-        let col = newGameResult.cols[newGameResult.editorColIndex - 1];
-        for (let i = 0; i < col.length;) {
-            if (col[i].designer + col[i].editor === 0) {
-                newGameResult.cols[newGameResult.editorColIndex + 1].push(...col.splice(i, 1));
-            } else {
-                i++;
+
+        const process = (col: Task[]) => {
+            for (let i = 0; i < col.length;) {
+                if (col[i].designer + col[i].editor === 0) {
+                    newGameResult.cols[newGameResult.editorColIndex + 1].push(...col.splice(i, 1));
+                } else {
+                    i++;
+                }
             }
-        }
-        col = newGameResult.cols[newGameResult.editorColIndex];
-        for (let i = 0; i < col.length;) {
-            if (col[i].editor === 0) {
-                newGameResult.cols[newGameResult.editorColIndex + 1].push(...col.splice(i, 1));
-            } else {
-                i++;
-            }
-        }
+        };
+
+        process(newGameResult.cols[newGameResult.editorColIndex - 1]);
+        process(newGameResult.cols[newGameResult.editorColIndex]);
         moveEmptyDev(newGameResult);
     }
 
     const moveEmptyDesign = (newGameResult: GameResult) => {
-        let col = newGameResult.cols[newGameResult.designerColIndex - 1];
-        for (let i = 0; i < col.length;) {
-            if (col[i].designer + col[i].product === 0) {
-                newGameResult.cols[newGameResult.designerColIndex + 1].push(...col.splice(i, 1));
-            } else {
-                i++;
+
+        const process = (col: Task[]) => {
+
+            for (let i = 0; i < col.length;) {
+                if (col[i].designer + col[i].product === 0) {
+                    newGameResult.cols[newGameResult.designerColIndex + 1].push(...col.splice(i, 1));
+                } else {
+                    i++;
+                }
             }
-        }
-        col = newGameResult.cols[newGameResult.designerColIndex];
-        for (let i = 0; i < col.length;) {
-            if (col[i].designer === 0) {
-                newGameResult.cols[newGameResult.designerColIndex + 1].push(...col.splice(i, 1));
-            } else {
-                i++;
-            }
-        }
+        };
+
+        process(newGameResult.cols[newGameResult.designerColIndex - 1]);
+        process(newGameResult.cols[newGameResult.designerColIndex]);
         moveEmptyEditing(newGameResult);
     }
 
     const moveEmptyAnalyze = (newGameResult: GameResult) => {
-        let col = newGameResult.cols[newGameResult.productColIndex - 1];
-        for (let i = 0; i < col.length;) {
-            if (col[i].product === 0) {
-                const task = col.splice(i, 1)[0];
-                task.startWeek = newGameResult.week;
-                task.notStarted = false;
-                newGameResult.cols[newGameResult.productColIndex + 1].push(task);
-            } else {
-                i++;
+
+        const process = (col: Task[]) => {
+            for (let i = 0; i < col.length;) {
+                if (col[i].product === 0) {
+                    const task = col.splice(i, 1)[0];
+                    task.startWeek = newGameResult.week;
+                    task.notStarted = false;
+                    newGameResult.cols[newGameResult.productColIndex + 1].push(task);
+                } else {
+                    i++;
+                }
             }
-        }
-        col = newGameResult.cols[newGameResult.productColIndex];
-        for (let i = 0; i < col.length;) {
-            if (col[i].product === 0) {
-                const task = col.splice(i, 1)[0];
-                task.startWeek = newGameResult.week;
-                task.notStarted = false;
-                newGameResult.cols[newGameResult.productColIndex + 1].push(task);
-            } else {
-                i++;
-            }
-        }
+        };
+
+        process(newGameResult.cols[newGameResult.productColIndex - 1]);
+        process(newGameResult.cols[newGameResult.productColIndex]);
         moveEmptyDesign(newGameResult);
     }
 
