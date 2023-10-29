@@ -242,7 +242,7 @@ export const GameRunner = () => {
         <button className="RunGameButton"
                 disabled={gameResult.week > 25}
                 onClick={() => calcWeek()}
-        >{gameResult.week < 0 ? "Я прочитал описание, давайте задачи!" : "Запустить неделю"}
+        >{gameResult.week < 0 ? "Я прочитал описание, давайте задачи!" : (gameResult.week > 25 ? "Полгода прошло, посмотрите результаты. Для перезапуска - обновите страницу" : "Запустить неделю")}
         </button>
         {gameResult.week < 0 &&
             <div>
