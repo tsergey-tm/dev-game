@@ -230,7 +230,7 @@ export const GameRunner = () => {
         newGameResult.week++;
 
         if (newGameResult.week % 2 === 0) {
-            const items = TaskGenerator(newGameResult.week, newGameResult.taskIndex);
+            const items = TaskGenerator(newGameResult.week / 2, newGameResult.taskIndex);
             newGameResult.taskIndex += items.length;
             newGameResult.cols[0].unshift(...items);
         }
