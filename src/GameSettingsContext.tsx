@@ -1,23 +1,23 @@
 import React, {PropsWithChildren, useContext, useState} from "react";
 
 export class StepInitParam {
-    dayPower: number;
+    twoHourPower: number;
     weekPower: number;
     weekMoney: number;
 
-    constructor(dayPower: number, weekPower: number, weekMoney: number) {
-        this.dayPower = dayPower;
+    constructor(twoHourPower: number, weekPower: number, weekMoney: number) {
+        this.twoHourPower = twoHourPower;
         this.weekPower = weekPower;
         this.weekMoney = weekMoney;
     }
 }
 
 export class InitParams {
-    products: StepInitParam = new StepInitParam(8, 40, 200);
-    designers: StepInitParam = new StepInitParam(8, 20, 100);
-    editors: StepInitParam = new StepInitParam(8, 20, 100);
-    developers: StepInitParam = new StepInitParam(80, 400, 3200);
-    testers: StepInitParam = new StepInitParam(16, 80, 400);
+    products: StepInitParam = new StepInitParam(2, 40, 200);
+    designers: StepInitParam = new StepInitParam(2, 20, 100);
+    editors: StepInitParam = new StepInitParam(2, 20, 100);
+    developers: StepInitParam = new StepInitParam(20, 400, 3200);
+    testers: StepInitParam = new StepInitParam(4, 80, 400);
 }
 
 export type SetInitParams = (initParams: InitParams) => void;

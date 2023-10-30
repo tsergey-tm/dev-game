@@ -100,7 +100,7 @@ export const GameRunner = () => {
 
     function processDay(newGameResult: GameResult,
                         wPoints: number,
-                        dayPower: number,
+                        twoHourPower: number,
                         taskStep: string,
                         colIndex: number,
                         isTesting: boolean,
@@ -108,7 +108,7 @@ export const GameRunner = () => {
 
         let weekPoints = wPoints;
 
-        let dayPoints = Math.min(weekPoints, dayPower);
+        let dayPoints = Math.min(weekPoints, twoHourPower);
 
         while (dayPoints > 0) {
             let tasks = newGameResult.cols[colIndex].slice(0);
@@ -169,10 +169,10 @@ export const GameRunner = () => {
             let developersPoints = initParams.developers.weekPower;
             let testersPoints = initParams.testers.weekPower;
 
-            for (let day = 0; day < 5; day++) {
+            for (let towHours = 0; towHours < 5 * 4; towHours++) {
                 testersPoints = processDay(newGameResult,
                     testersPoints,
-                    initParams.testers.dayPower,
+                    initParams.testers.twoHourPower,
                     "tester",
                     newGameResult.testerColIndex,
                     true,
@@ -180,7 +180,7 @@ export const GameRunner = () => {
 
                 developersPoints = processDay(newGameResult,
                     developersPoints,
-                    initParams.developers.dayPower,
+                    initParams.developers.twoHourPower,
                     "developer",
                     newGameResult.developerColIndex,
                     false,
@@ -188,7 +188,7 @@ export const GameRunner = () => {
 
                 editorsPoints = processDay(newGameResult,
                     editorsPoints,
-                    initParams.editors.dayPower,
+                    initParams.editors.twoHourPower,
                     "editor",
                     newGameResult.editorColIndex,
                     false,
@@ -196,7 +196,7 @@ export const GameRunner = () => {
 
                 designersPoints = processDay(newGameResult,
                     designersPoints,
-                    initParams.designers.dayPower,
+                    initParams.designers.twoHourPower,
                     "designer",
                     newGameResult.designerColIndex,
                     false,
@@ -204,7 +204,7 @@ export const GameRunner = () => {
 
                 productsPoints = processDay(newGameResult,
                     productsPoints,
-                    initParams.products.dayPower,
+                    initParams.products.twoHourPower,
                     "product",
                     newGameResult.productColIndex,
                     false,
@@ -274,6 +274,10 @@ export const GameRunner = () => {
                     </ul>
                     Но после того, как с задачей начали работать, над ней работают в порядке очереди. И поменять
                     приоритет уже не получится: "чайка-менеджмент" у нас не практикуется.
+                </p>
+                <p>
+                    Сотрудники проверяют доску на предмет новых задач каждые 2 часа. Рабочий день - 8 часов. Рабочая
+                    неделя 40 часов на человека.
                 </p>
                 <p>
                     Отчет команда приносит каждую неделю. Тогда же можно пересмотреть приоритеты задач.
