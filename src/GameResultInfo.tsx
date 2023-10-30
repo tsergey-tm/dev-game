@@ -10,7 +10,7 @@ export const GameResultInfo = () => {
     }
 
     return <div className={"GameResult"}>
-        Неделя: {gameResult.week},
+        Неделя: {gameResult.week} из 26,
         расходы: {numberWithThousands(gameResult.consumption)} coin,
         доходы: {numberWithThousands(gameResult.income)} coin,
         результат: {numberWithThousands(gameResult.income - gameResult.consumption)} coin<br/>
