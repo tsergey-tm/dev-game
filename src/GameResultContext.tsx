@@ -71,6 +71,7 @@ export class GameResult {
     week: number = -1;
     taskIndex: number = 1;
     income: number = 0;
+    weekIncome: number = 0;
     consumption: number = 0;
     cols: Task[][] = [];
     effProduct: Effectiveness = new Effectiveness();
@@ -112,6 +113,7 @@ export class GameResult {
         cloneObj.week = this.week;
         cloneObj.taskIndex = this.taskIndex;
         cloneObj.income = this.income;
+        cloneObj.weekIncome = this.weekIncome;
         cloneObj.consumption = this.consumption;
 
         cloneObj.effProduct = this.effProduct.clone();

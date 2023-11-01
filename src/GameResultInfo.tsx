@@ -13,7 +13,9 @@ export const GameResultInfo = () => {
         Неделя: {gameResult.week} из 26,
         расходы: {numberWithThousands(gameResult.consumption)} coin,
         доходы: {numberWithThousands(gameResult.income)} coin,
-        результат: {numberWithThousands(gameResult.income - gameResult.consumption)} coin<br/>
+        недельный доход: {numberWithThousands(gameResult.weekIncome)} coin,
+        результат: {numberWithThousands(gameResult.income - gameResult.consumption)} coin
+        <br/>
         Эффективность:
         Продакты {gameResult.effProduct.toString()},
         Дизайнеры {gameResult.effDesigner.toString()},

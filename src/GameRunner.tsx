@@ -229,6 +229,9 @@ export const GameRunner = () => {
         }
         newGameResult.week++;
 
+        newGameResult.weekIncome = 0;
+        newGameResult.cols.slice(-1)[0].forEach(task => newGameResult.weekIncome += task.money);
+
         if (newGameResult.week % 2 === 0) {
             const items = TaskGenerator(newGameResult.week / 2, newGameResult.taskIndex);
             newGameResult.taskIndex += items.length;
