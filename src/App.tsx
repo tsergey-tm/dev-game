@@ -6,6 +6,7 @@ import {GameResultContextProvider} from "./GameResultContext";
 import {GameResultInfo} from "./GameResultInfo";
 import {GameTable} from "./GameTable";
 import {GameRunner} from "./GameRunner";
+import {WIPInfo} from "./WIPInfo";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                     <GameSettingsInfo/>
                     <GameResultInfo/>
                     <GameRunner/>
+                    <WIPInfo/>
                     <GameTable/>
                 </GameResultContextProvider>
             </GameSettingsContextProvider>
