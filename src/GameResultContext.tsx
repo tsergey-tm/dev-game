@@ -1,6 +1,9 @@
 import React, {PropsWithChildren, useContext, useState} from "react";
+import taskGenerator, {startConsumption} from "./TaskGenerator";
+import {initParams} from "./Constants";
 
 export class Task {
+    index: number;
     name: string;
     product: number;
     designer: number;
@@ -8,11 +11,11 @@ export class Task {
     developer: number;
     tester: number;
     money: number;
+    primeCost: number;
     notStarted: boolean = true;
-    startWeek: number = -1;
-    endWeek: number = -1;
+    notFinished: boolean = true;
 
-    constructor(name: string,
+    constructor(index: number,
                 product: number,
                 designer: number,
                 editor: number,
@@ -20,17 +23,24 @@ export class Task {
                 tester: number,
                 money: number
     ) {
-        this.name = name;
+        this.index = index;
+        this.name = "TASK-" + (index + 1);
         this.product = product;
         this.designer = designer;
         this.editor = editor;
         this.developer = developer;
         this.tester = tester;
         this.money = money;
+        this.primeCost =
+            this.product * initParams.products.weekMoney / initParams.products.weekPower +
+            this.designer * initParams.designers.weekMoney / initParams.designers.weekPower +
+            this.editor * initParams.editors.weekMoney / initParams.editors.weekPower +
+            this.developer * initParams.developers.weekMoney / initParams.developers.weekPower +
+            this.tester * initParams.testers.weekMoney / initParams.testers.weekPower;
     }
 
     clone(): Task {
-        const cloneObj = new Task(this.name,
+        const cloneObj = new Task(this.index,
             this.product,
             this.designer,
             this.editor,
@@ -38,8 +48,7 @@ export class Task {
             this.tester,
             this.money);
         cloneObj.notStarted = this.notStarted;
-        cloneObj.startWeek = this.startWeek;
-        cloneObj.endWeek = this.endWeek;
+        cloneObj.notFinished = this.notFinished;
         return cloneObj;
     }
 }
@@ -68,17 +77,21 @@ export class Effectiveness {
 }
 
 export class GameResult {
+    tasks: Task[][];
     week: number = -1;
-    taskIndex: number = 1;
     income: number = 0;
-    weekIncome: number = 0;
-    consumption: number = 0;
+    consumption: number = startConsumption;
     cols: Task[][] = [];
     effProduct: Effectiveness = new Effectiveness();
     effDesigner: Effectiveness = new Effectiveness();
     effEditor: Effectiveness = new Effectiveness();
     effDeveloper: Effectiveness = new Effectiveness();
     effTester: Effectiveness = new Effectiveness();
+    productHours = 0;
+    designHours = 0;
+    editorHours = 0;
+    devHours = 0;
+    testHours = 0;
     readonly colNames: string[];
     readonly productColIndex: number = 2;
     readonly designerColIndex: number = 4;
@@ -86,19 +99,22 @@ export class GameResult {
     readonly developerColIndex: number = 8;
     readonly testerColIndex: number = 10;
 
-    constructor() {
+    constructor(tasks: Task[][]) {
+
+        this.tasks = tasks;
+
         this.colNames = [
-            "Backlog",
-            "Нужно сделать",
+            "Заказы",
+            "Будем сделать",
             "Анализ",
             "Анализ готов",
             "Дизайн",
             "Дизайн готов",
             "Редактура",
-            "Готово к разработке",
-            "Разработка",
-            "Готово к тестированию",
-            "Тестирование",
+            "Готово к разра&shy;ботке",
+            "Разра&shy;ботка",
+            "Готово к тести&shy;рованию",
+            "Тести&shy;рование",
             "Готово"
         ];
 
@@ -108,12 +124,14 @@ export class GameResult {
     }
 
     clone(): GameResult {
-        const cloneObj = new GameResult();
+
+        const t: Task[][] = [];
+        this.tasks.forEach(task => t.push(task.map(t => t.clone())));
+
+        const cloneObj = new GameResult(t);
 
         cloneObj.week = this.week;
-        cloneObj.taskIndex = this.taskIndex;
         cloneObj.income = this.income;
-        cloneObj.weekIncome = this.weekIncome;
         cloneObj.consumption = this.consumption;
 
         cloneObj.effProduct = this.effProduct.clone();
@@ -122,11 +140,34 @@ export class GameResult {
         cloneObj.effDeveloper = this.effDeveloper.clone();
         cloneObj.effTester = this.effTester.clone();
 
+        cloneObj.productHours = this.productHours;
+        cloneObj.designHours = this.designHours;
+        cloneObj.editorHours = this.editorHours;
+        cloneObj.devHours = this.devHours;
+        cloneObj.testHours = this.testHours;
+
         for (let i = 0; i < cloneObj.cols.length; i++) {
             cloneObj.cols[i].push(...this.cols[i].map(value => value.clone()));
         }
 
         return cloneObj;
+    }
+
+    recalcWIP(): void {
+
+        this.productHours = 0;
+        this.designHours = 0;
+        this.editorHours = 0;
+        this.devHours = 0;
+        this.testHours = 0;
+
+        this.cols.slice(1, -1).flat().forEach((task) => {
+            this.productHours += task.product;
+            this.designHours += task.designer;
+            this.editorHours += task.editor;
+            this.devHours += task.developer;
+            this.testHours += task.tester;
+        });
     }
 }
 
@@ -141,8 +182,12 @@ export const GameResultContext = React.createContext<GameResultContextType | und
 
 export const GameResultContextProvider = ({children}: PropsWithChildren<{}>) => {
 
-    const initialState = new GameResult();
-    const [gameResult, setGameResult] = useState<GameResult>(initialState);
+    const [gameResult, _setGameResult] = useState<GameResult>(new GameResult(taskGenerator()));
+
+    const setGameResult: SetGameResult = (newGameResult) => {
+        newGameResult.recalcWIP();
+        _setGameResult(newGameResult);
+    }
 
     return (
         <GameResultContext.Provider value={{gameResult, setGameResult}}>

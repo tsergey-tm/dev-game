@@ -1,91 +1,63 @@
 :root {
-    /* Dark theme */
-    --dark-background: #222;
-    --dark-foregeound: #ddd;
-    --dark-ltbackground: #444;
-    --dark-border: #aaa;
-    /* Light theme */
-    --light-background: #fff;
-    --light-foregeound: #222;
-    --light-ltbackground: #ddd;
-    --light-border: #555;
-    /* Defaults */
-    --current-background: var(--light-background);
-    --current-foreground: var(--light-foregeound);
-    --current-ltbackground: var(--light-ltbackground);
-    --current-border: var(--light-border);
+    width: 100%;
+    height: 100%;
+    background-color: #8f4aff;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --current-background: var(--dark-background);
-        --current-foreground: var(--dark-foregeound);
-        --current-ltbackground: var(--dark-ltbackground);
-        --current-border: var(--dark-border);
+html {
+    background-color: #8f4aff;
+}
+
+/* Safari 15.1+ has a bug where the overscroll-behavior property is not working as expected when
+  combined with ScrollSmoother. This is a temporary fix for the issue.
+ */
+@supports (hanging-punctuation: first) and (font: -apple-system-body) and (-webkit-appearance: none) {
+    html:has(.single-products) {
+        overscroll-behavior: auto !important;
     }
 }
 
 body {
-    background-color: var(--current-background);
-    color: var(--current-foreground);
+    background-color: #8f4aff;
+}
+
+.FullScreenContainer {
+    background-color: #8f4aff;
+}
+
+.SvgFillContainer {
+    width: 100%;
+    height: auto;
+    overflow: visible;
 }
 
 .App {
-    background-color: var(--current-background);
-    color: var(--current-foreground);
+    /* Dark */
+    --dark-background: #8f4aff;
+    --dark-foreground: #FFFFFF;
+    --dark-ltbackground: #FFFFFF0D;
+    --dark-ltltbackground: #FFFFFF26;
+    --dark-border: #191919;
+    /* Light */
+    --light-background: #FFFFFF;
+    --light-ltbackground: #D3F0FF;
+    --light-graybackground: #F3F3F3;
+    --light-foreground: #191919;
+    --light-ltforeground: #7F42E1;
+    --light-ltltforeground: #8f4aff;
+    --light-border: #191919;
+    --light-gray-foreground: #949494;
+
+    --arc0: max(min(0.5vh, 0.5vw), 5px);
+    --arc1: max(min(1vh, 1vw), 10px);
+    --arc2: max(min(3vh, 3vw), 30px);
+
+    width: 100%;
+    height: 100%;
+    container: App / inline-size;
 }
 
-.RunGame {
-    margin: 0.3em;
-}
-
-
-.RunGameButton {
-    -webkit-animation: RunGameButton_pulsing 10s infinite;
-    animation: RunGameButton_pulsing 10s infinite;
-    background: ButtonFace;
-    border-radius: 5px;
-}
-
-
-@-webkit-keyframes RunGameButton_pulsing {
-    0% {
-        background: ButtonFace;
-    }
-    41% {
-        background: ButtonFace;
-    }
-    44% {
-        background-color: rgb(255, 255, 64);
-    }
-    47% {
-        background-color: rgb(255, 64, 64);
-    }
-    50% {
-        background: ButtonFace;
-    }
-    100% {
-        background: ButtonFace;
-    }
-}
-
-@keyframes RunGameButton_pulsing {
-    0% {
-        background: ButtonFace;
-    }
-    41% {
-        background: ButtonFace;
-    }
-    44% {
-        background-color: rgb(255, 255, 64);
-    }
-    47% {
-        background-color: rgb(255, 64, 64);
-    }
-    50% {
-        background: ButtonFace;
-    }
-    100% {
-        background: ButtonFace;
-    }
+.fullscreen-enabled {
+    overflow: auto;
+    height: 100vh;
 }

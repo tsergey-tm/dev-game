@@ -1,0 +1,123 @@
+.HeaderBlock {
+    flex-shrink: 0;
+    flex-grow: 0;
+    flex-basis: min-content;
+    gap: 1vw;
+    opacity: 1;
+    padding: 2vh 2vw;
+    background-color: var(--light-background);
+    color: var(--light-foreground);
+    border-radius: var(--arc1);
+    corner-shape: superellipse(1.6);
+    margin: var(--arc1);
+    display: grid;
+    justify-content: stretch;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.HeaderInnerBlockNameLeft {
+    text-align: left;
+    text-transform: uppercase;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.HeaderInnerBlockNameLeftLink {
+    cursor: pointer;
+}
+
+.HeaderInnerBlockNameCenter {
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--light-ltforeground);
+    justify-self: center;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.HeaderInnerBlockNameCenter > a {
+    color: var(--light-ltforeground);
+    text-decoration: none;
+}
+
+.HeaderInnerBlockNameCenter > a:hover {
+    color: var(--light-ltltforeground);
+    text-decoration: none;
+}
+
+.HeaderInnerBlockNameRight {
+    text-align: right;
+    text-transform: uppercase;
+    justify-self: right;
+    color: var(--light-ltforeground);
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 5px;
+}
+
+.ScreenImg {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.ModalConfig {
+    background-color: var(--light-graybackground);
+    color: var(--light-foreground);
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 1em;
+}
+
+.ModalConfigOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #00000088;
+    container: ModalConfigOverlay / inline-size;
+    display: flex;
+}
+
+@container ModalConfigOverlay (width < 400px) {
+    .ModalConfig {
+        width: 100vw;
+        height: 5em;
+        border-radius: var(--arc1);
+        corner-shape: superellipse(1.6);
+        align-self: flex-end;
+    }
+}
+
+@container ModalConfigOverlay (width >= 400px) {
+    .ModalConfig {
+        position: fixed;
+        z-index: 10000;
+        top: var(--arc2);
+        right: var(--arc2);
+        width: 20em;
+        height: 5em;
+        border-radius: var(--arc1);
+        corner-shape: superellipse(1.6);
+    }
+}
+
+.ConfigLabel {
+    height: 2em;
+    margin: 0.2em;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ConfigLabelSwitch {
+    vertical-align: middle;
+    margin-left: 4px;
+    height: 2em;
+    align-self: flex-end;
+}

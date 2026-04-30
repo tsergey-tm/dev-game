@@ -1,26 +1,59 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import './fonts/font.css';
 import './App.css';
-import {GameSettingsInfo} from "./GameSettingsInfo";
+import './text.css';
 import {GameSettingsContextProvider} from "./GameSettingsContext";
 import {GameResultContextProvider} from "./GameResultContext";
-import {GameResultInfo} from "./GameResultInfo";
-import {GameTable} from "./GameTable";
 import {GameRunner} from "./GameRunner";
-import {WIPInfo} from "./WIPInfo";
+import {FullScreen, useFullScreenHandle} from "react-full-screen";
+import {UserSettingsContextProvider} from "./UserSettingsContext";
+import {createBrowserRouter, Navigate, RouterProvider} from "react-router";
+import {Article} from "./Article";
+import ReactModal from "react-modal";
 
 function App() {
+
+    const handle = useFullScreenHandle();
+
+    const basename = process.env.REACT_APP_ROOT_URL || '/';
+
+    const router = createBrowserRouter([
+            {
+                index: true,
+                path: "/",
+                element: <GameRunner fullScreenHandler={handle}/>
+            },
+            {
+                path: "/article",
+                element: <Article/>
+            },
+            {
+                path: "*",
+                element: <Navigate to="/" replace/>
+            }
+        ], {
+            basename: basename
+        }
+    );
+
+    useEffect(() => {
+        ReactModal.setAppElement('#AppElement');
+    }, []);
+
     return (
-        <div className="App">
-            <GameSettingsContextProvider>
-                <GameResultContextProvider>
-                    <GameSettingsInfo/>
-                    <GameResultInfo/>
-                    <GameRunner/>
-                    <WIPInfo/>
-                    <GameTable/>
-                </GameResultContextProvider>
-            </GameSettingsContextProvider>
-        </div>
+        <FullScreen handle={handle} className={"FullScreenContainer"}>
+            <div className={"App"} id='AppElement'>
+                <GameSettingsContextProvider>
+                    <GameResultContextProvider>
+                        <UserSettingsContextProvider>
+                            <div className={"AppContainer"} id={"AppContainer"}>
+                                <RouterProvider router={router}/>
+                            </div>
+                        </UserSettingsContextProvider>
+                    </GameResultContextProvider>
+                </GameSettingsContextProvider>
+            </div>
+        </FullScreen>
     );
 }
 

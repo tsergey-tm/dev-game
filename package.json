@@ -1,22 +1,30 @@
 {
   "name": "dev-game",
   "version": "0.1.0",
-  "homepage": "./",
+  "homepage": ".",
   "private": true,
   "dependencies": {
+    "@hello-pangea/dnd": "^18.0.1",
+    "@react-hook/window-size": "^3.1.1",
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@types/react-modal": "^3.16.3",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
+    "react-full-screen": "^1.1.1",
+    "react-modal": "^3.16.3",
+    "react-router": "^7.14.2",
+    "react-switch": "^7.1.0",
     "typescript": "^4.9.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start.dev": "dotenvx run -f .env.dev -f .env -- react-scripts start",
+    "start.mock": "dotenvx run -f .env.mock -f .env -- react-scripts start",
+    "build": "react-scripts build && compress-cra",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build",
-    "audit": "better-npm-audit audit -p"
+    "audit": "better-npm-audit audit -p",
+    "test": "jest"
   },
   "eslintConfig": {
     "extends": [
@@ -37,8 +45,16 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0",
+    "@dotenvx/dotenvx": "^1.64.0",
+    "@types/jest": "^30.0.0",
     "better-npm-audit": "^3.11.0",
-    "react-scripts": "^5.0.1"
-  }
+    "compress-create-react-app": "^1.4.5",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0",
+    "react-app-rewired": "^2.2.1",
+    "react-scripts": "5.0.1",
+    "ts-jest": "^29.4.9",
+    "ts-node": "^10.9.2"
+  },
+  "proxy": "http://localhost:31080"
 }

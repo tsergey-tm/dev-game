@@ -1,0 +1,14 @@
+.GameResultBlock {
+    margin: 0 var(--arc1) var(--arc1) var(--arc1);
+    display: flex;
+    gap: var(--arc1);
+    flex-flow: row wrap;
+}
+
+.GameRunner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    container: GameRunner / inline-size;
+}

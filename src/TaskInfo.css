@@ -1,33 +1,99 @@
 .TaskInfo {
-    margin: 0.1em;
-    border-width: 1px;
-    border-style: dotted;
-    border-radius: 10px;
-    padding: 0.3em;
-    clear: left;
-}
+    border-radius: var(--arc0);
+    corner-shape: superellipse(1.6);
+    gap: var(--arc0);
+    padding: var(--arc1);
+    background-color: var(--light-background);
+    color: var(--light-foreground);
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: min-content;
+    width: stretch;
+    container: TaskInfo / inline-size;
 
-.TaskInfoName {
-    font-weight: bold;
-    white-space: nowrap;
-    text-align: center;
-}
-
-.TaskInfoData {
-    font-weight: normal;
-    white-space: nowrap;
-    text-align: right;
-}
-
-.TaskInfoMoveButton {
-    margin: 0.1em;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 5px;
-    padding: 0.1em;
-    cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard version (Chrome, Opera) */
 }
 
 .TaskInfoDataMoney {
-    color: #e65339;
+    color: #5CAD9A;
+}
+
+.TaskInfoCaption {
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.TaskInfoDataLine {
+    display: grid;
+    grid-template-columns: minmax(1em, 100%) fit-content(7ch);
+}
+
+.TaskInfoData {
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.TaskInfoDataNum {
+    text-align: right;
+    padding-left: 10px;
+}
+
+.TaskInfoSpaceDiv {
+    border-color: var(--light-gray-foreground);
+    border-top-style: solid;
+    border-top-width: 1px;
+}
+
+@container TaskInfo (width < 200px) {
+    .TaskInfoButtons {
+        display: none !important;
+    }
+}
+
+@container TaskInfo (width >= 200px) {
+    .TaskInfoButtonsCompact {
+        display: none !important;
+    }
+}
+
+.TaskInfoButtons {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: var(--arc0);
+}
+
+.TaskInfoButtonsCompact {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: stretch;
+    justify-items: center;
+    gap: var(--arc0);
+}
+
+.TaskInfoKeysColChange {
+    grid-row: span 2;
+}
+
+.TaskInfoKeysColChange > .TaskInfoKeys {
+    height: stretch;
+}
+
+.TaskInfoKeys {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    padding: var(--arc0);
+    background-color: var(--light-graybackground);
+    border-radius: var(--arc0);
+    corner-shape: superellipse(1.6);
 }

@@ -1,0 +1,183 @@
+.EndGame {
+    max-width: 1440px;
+    width: 80vw;
+    gap: 3vh;
+    opacity: 1;
+    padding-top: var(--arc2);
+    padding-bottom: var(--arc2);
+    border-radius: var(--arc2);
+    corner-shape: superellipse(1.6);
+    background-color: var(--light-background);
+    color: var(--light-foreground);
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+@container GameRunner (width < 600px) {
+    .EndGame {
+        border-radius: var(--arc1) !important;
+        corner-shape: superellipse(1.6);
+        width: 94vw !important;
+    }
+}
+
+.EndGameBlock {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.EndGameHeaderBlock {
+    display: flex;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    gap: 3vw;
+    width: stretch;
+    container: EndGameHeaderBlock / inline-size;
+}
+
+.EndGameResultHeaderImg {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 40vw;
+    min-width: 100px;
+}
+
+.EndGameResultProfit {
+    text-align: center;
+    color: var(--light-ltforeground);
+}
+
+.EndGameBestResult {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.EndGameBestResultNum {
+    font-weight: bold;
+}
+
+.EndGameInfo {
+    border-color: var(--light-border);
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 32px;
+    corner-shape: superellipse(1.6);
+    width: 60%;
+    padding: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.EndGameInfoText {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.EndGameInfoQR {
+
+}
+
+.EndGameInfoCaption {
+    letter-spacing: -1%;
+}
+
+.EndGameInfoText1 {
+    text-align: left;
+    align-self: flex-start;
+    text-indent: 2em;
+    line-height: 1.25;
+    margin-top: 0.5em;
+}
+
+.EndGameInfoLink {
+
+}
+
+.EndGameArticleLink {
+    text-decoration: none;
+}
+
+.EndGameResultIcon1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+
+}
+
+.EndGameResultIcon1Img {
+    width: 80%;
+    height: 80%;
+}
+
+.EndGameResultIcon2 {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    height: 100%;
+}
+
+@container EndGameHeaderBlock (width < 600px) {
+    .EndGameResultIcon1 {
+        display: none !important;
+    }
+
+    .EndGameResultIcon2 {
+        display: none !important;
+    }
+}
+
+
+.EndGameResultIcon2Img {
+    width: 80%;
+    height: 80%;
+}
+
+.EndGameButton {
+    font-family: "TT Norms Tochka Extended Medium";
+    font-size: 20px;
+    width: 200px;
+    height: 64px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--light-foreground);
+    color: var(--dark-foreground);
+    padding-right: 28px;
+    padding-left: 28px;
+    border-radius: 12px;
+    corner-shape: superellipse(1.6);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+
+
+.EndGameButtonReturnLink {
+    text-decoration: none;
+}
+
+.EndGameButtonReturn {
+    font-family: "TT Norms Tochka Extended Medium";
+    font-size: 20px;
+    width: 200px;
+    height: 64px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--light-graybackground);
+    color: var(--light-foreground);
+    padding-right: 28px;
+    padding-left: 28px;
+    border-radius: 12px;
+    corner-shape: superellipse(1.6);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}

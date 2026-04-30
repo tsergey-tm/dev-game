@@ -1,84 +1,175 @@
 .GameTable {
-    border-width: 2px;
-    border-color: var(--current-border);
-    border-style: solid;
     margin: 0.2em;
-    border-spacing: 0;
-    width: 1%;
+    display: grid;
+    grid-template-columns: 4fr 4fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr;
 }
 
-.GameTable > thead > tr:first-child > th:first-child {
-    padding: 0.5em;
-    border-width: 0;
-    border-color: var(--current-border);
-    border-style: solid;
-    font-weight: bold;
+.GameTableColHeader {
+    border-radius: 10px 10px 0 0;
+    corner-shape: superellipse(1.6);
+    display: flex;
+    flex-flow: column nowrap;
+    row-gap: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    align-items: center;
+    justify-items: center;
+    color: var(--dark-foreground);
 }
 
-.GameTable > thead > tr:first-child > th {
-    padding: 0.5em;
-    border-width: 0 0 0 1px;
-    border-color: var(--current-border);
-    border-style: solid;
-    font-weight: bold;
+.GameTableColHeaderOdd {
+    background-color: var(--dark-background);
 }
 
-.GameTable > thead > tr > th:first-child {
-    padding: 0.5em;
-    border-width: 1px 0 0 0;
-    border-color: var(--current-border);
-    border-style: solid;
-    vertical-align: center;
-    font-weight: bold;
-    width: 1%;
+.GameTableColHeaderEven {
+    background-color: var(--dark-ltbackground);
 }
 
-.GameTable > thead > tr > th {
-    padding: 0.5em;
-    border-width: 1px 0 0 1px;
-    border-color: var(--current-border);
-    border-style: solid;
-    vertical-align: center;
-    font-weight: bold;
-    width: 1%;
-}
-
-.GameTable > thead > tr > td:first-child {
-    padding: 0.1em;
-    border-width: 1px 0 0 0;
-    border-color: var(--current-border);
-    border-style: solid;
-    vertical-align: top;
+.GameTableColHeaderCaption {
     text-align: center;
-    font-weight: normal;
-    width: 1%;
+    text-transform: uppercase;
+    margin-top: 5px;
 }
 
-.GameTable > thead > tr > td {
-    padding: 0.1em;
-    border-width: 1px 0 0 1px;
-    border-color: var(--current-border);
-    border-style: solid;
-    vertical-align: top;
-    text-align: center;
-    font-weight: normal;
-    width: 1%;
+.GameTableColHeaderCounterBlock {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
 }
 
-.GameTable > tbody > tr > td:first-child {
-    padding: 0.5em;
-    border-width: 1px 0 0 0;
-    border-color: var(--current-border);
-    border-style: solid;
+.GameTableColCounter {
     font-weight: bold;
-    vertical-align: top;
+    text-align: center;
+    vertical-align: middle;
+    width: 40px;
+    height: 20px;
+    border-radius: 10px;
+    corner-shape: superellipse(1.6);
+    opacity: 1;
+    background-color: var(--light-foreground);
+    color: var(--dark-foreground);
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    align-items: center;
+    justify-items: center;
 }
 
-.GameTable > tbody > tr > td {
-    padding: 0.5em;
-    border-width: 1px 0 0 1px;
-    border-color: var(--current-border);
-    border-style: solid;
-    font-weight: normal;
-    vertical-align: top;
+.GameTableColData {
+}
+
+.GameTableColDrop {
+    width: 100%;
+    min-height: max(300px, 75vh);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    corner-shape: superellipse(1.6);
+}
+
+.GameTableColDrop:has(div.GameTableColEmpty) {
+    border-style: dashed;
+    border-width: 2px;
+    border-color: var(--dark-foreground);
+}
+
+.GameTableColDropReady {
+    background-color: var(--dark-ltltbackground);
+    border-radius: 20px;
+    corner-shape: superellipse(1.6);
+    border-style: dashed;
+    border-width: 2px;
+    border-color: var(--dark-foreground);
+}
+
+.GameTableColEmpty {
+    justify-content: center;
+    align-content: center;
+    margin: 50px 20px;
+    display: grid;
+    gap: 20px;
+    color: var(--dark-foreground);
+}
+
+.GameTableColEmptyText {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.GameTableColEmptyCard {
+    width: 24px;
+    height: 30px;
+    opacity: 1;
+    border-radius: 4px;
+    corner-shape: superellipse(1.6);
+    padding: 9px;
+    color: var(--light-ltforeground);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.GameTableColEmptyCard1 {
+    background-color: #FFFFFFCC;
+}
+
+.GameTableColEmptyCard2 {
+    background-color: #FFFFFF99;
+}
+
+.GameTableColEmptyCard3 {
+    background-color: #FFFFFF66;
+}
+
+.GameTableColEmptyCard4 {
+    background-color: #FFFFFF33;
+}
+
+.GameTableColTasks {
+    border-radius: 0 0 10px 10px;
+    corner-shape: superellipse(1.6);
+    display: inline-block;
+    row-gap: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    min-height: 200px;
+    justify-items: center;
+    overflow-y: auto;
+    overflow-x: clip;
+    max-height: 80vh;
+    scrollbar-color: #000000 #ffffff;
+}
+
+@media (hover: none) {
+    .GameTableColTasks {
+        padding-right: 30px;
+    }
+}
+
+.GameTableColContainer {
+    width: 100%;
+}
+
+.GameTableColTasksOdd {
+    background-color: var(--dark-background);
+}
+
+.GameTableColTasksEven {
+    background-color: var(--dark-ltbackground);
+}
+
+@container GameRunner (width < 130em) {
+    .GameTableColHideable {
+        display: none !important;
+    }
+
+    .GameTable {
+        grid-template-columns: 1fr 1fr;
+    }
+
 }

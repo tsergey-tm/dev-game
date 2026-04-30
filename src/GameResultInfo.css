@@ -1,8 +1,59 @@
 .GameResult {
-    margin: 0.3em;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 0.2em;
-    padding: 0.3em;
-    width: max-content;
+    border-radius: var(--arc1);
+    corner-shape: superellipse(1.6);
+    gap: var(--arc1);
+    padding: min(3vh, 3vw);
+    color: var(--light-foreground);
+    background-color: var(--light-background);
+    max-width: 480px;
+    min-width: 300px;
+    min-height: 180px;
+    display: grid;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 0;
+}
+
+.GameResultInfoBlock {
+    gap: 10px;
+    opacity: 1;
+    padding: 0;
+    display: grid;
+}
+
+.GameResultInfoBlockText1 {
+    font-weight: bold;
+}
+
+.GameResultInfoBlockText2 {
+    text-align: left;
+}
+
+.GameResultButton {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--light-foreground);
+    color: var(--dark-foreground);
+    padding: var(--arc1) var(--arc2);
+    border-radius: var(--arc1);
+    corner-shape: superellipse(1.6);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard version (Chrome, Opera) */
+}
+
+.GameResultInfoBlockBlock {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.GameResultInfoBlockCoin {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -20px;
 }

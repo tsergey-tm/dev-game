@@ -1,26 +1,31 @@
 import {useGameResultContext} from "./GameResultContext";
 import "./GameResultInfo.css"
+import {CoinImg} from "./images";
+import {numberWithThousands} from "./GlobalFunctions";
+import {SimpleCallbackRef} from "./Constants";
 
-export const GameResultInfo = () => {
+export const GameResultInfo = (props: { onRunGame: SimpleCallbackRef }) => {
 
     const {gameResult} = useGameResultContext();
 
-    function numberWithThousands(x: number) {
-        return x.toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    }
-
     return <div className={"GameResult"}>
-        Неделя: {gameResult.week} из 26,
-        расходы: {numberWithThousands(gameResult.consumption)} coin,
-        доходы: {numberWithThousands(gameResult.income)} coin,
-        недельный доход: {numberWithThousands(gameResult.weekIncome)} coin,
-        результат: {numberWithThousands(gameResult.income - gameResult.consumption)} coin
-        <br/>
-        Эффективность:
-        Продакты {gameResult.effProduct.toString()},
-        Дизайнеры {gameResult.effDesigner.toString()},
-        Редакторы {gameResult.effEditor.toString()},
-        Разработчики {gameResult.effDeveloper.toString()},
-        Тестировщики {gameResult.effTester.toString()}
+        <div className={"GameResultInfoBlock"}>
+            <div className={"GameResultInfoBlockText1 Text-TT-Norms-Tochka-Extended-M"}>
+                Неделя: {gameResult.week} из 26
+            </div>
+            <div className={"GameResultInfoBlockBlock"}>
+                <div className={"GameResultInfoBlockText2 Text-ABC-Gravity-XXXL"} title={
+                    numberWithThousands(gameResult.income) + " - " + numberWithThousands(gameResult.consumption)
+                }>
+                    {numberWithThousands(gameResult.income - gameResult.consumption)}
+                </div>
+                <div className={"GameResultInfoBlockCoin"}>
+                    <CoinImg className={"SvgFillContainer"}/>
+                </div>
+            </div>
+        </div>
+        <div className={"GameResultButton Text-TT-Norms-Tochka-Extended-Medium-XL"} onClick={() => props.onRunGame()}>
+            Запустить неделю
+        </div>
     </div>
 };

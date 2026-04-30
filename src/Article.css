@@ -1,0 +1,190 @@
+.Article {
+    width: 100%;
+    height: 98vh;
+    display: flex;
+    flex-flow: column nowrap;
+    container: Article / inline-size;
+}
+
+.ArticleContainer {
+    align-self: stretch;
+    flex-grow: 1;
+    width: 90vw;
+    background-color: var(--light-background);
+    color: var(--light-foreground);
+    margin: var(--arc2) auto;
+
+    font-family: "TT Norms Tochka Extended";
+}
+
+.ArticleContainerBlock {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    line-height: 1.5;
+}
+
+@container Article (width >= 900px) {
+
+    .ArticleContainer {
+        width: 90vw;
+        padding: var(--arc2);
+        border-radius: var(--arc2);
+        corner-shape: superellipse(1.6);
+    }
+
+    .ArticleContainerBlock {
+        max-width: 50em;
+    }
+}
+
+@container Article (width < 900px) {
+
+    .ArticleContainer {
+        width: 90vw;
+        padding: var(--arc1);
+        border-radius: var(--arc1);
+        corner-shape: superellipse(1.6);
+        margin: var(--arc1) auto;
+    }
+
+    .ArticleContainerBlock {
+        width: 80vw;
+    }
+}
+
+.ArticleCaption {
+    text-align: left;
+    align-self: flex-start;
+    font-weight: bold;
+    margin-bottom: var(--arc2);
+    text-transform: uppercase;
+    font-family: ABC Gravity Compressed Cyrillic;
+    font-size: 5vh;
+    line-height: 90%;
+    letter-spacing: 2%;
+}
+
+.ArticleReading {
+    text-align: left;
+    margin-top: 1em;
+}
+
+.ArticleEpigraph {
+    margin: var(--arc2) 0;
+    border-radius: var(--arc2);
+    corner-shape: superellipse(1.6);
+    border-color: var(--light-border);
+    border-width: 2px;
+    border-style: solid;
+    padding: var(--arc2);
+    position: relative;
+}
+
+.ArticleEpigraphQuote {
+    width: 3em;
+    height: 3em;
+    display: flow;
+    position: absolute;
+    top: -1em;
+    right: 2em;
+}
+
+.ArticleEpigraphText {
+    font-weight: bold;
+}
+
+.ArticleEpigraphAuthor {
+    margin-top: 1em;
+}
+
+.ArticleEpigraphAuthor > a {
+    text-decoration: none;
+    color: var(--light-ltltforeground);
+}
+
+.ArticleNotice {
+    text-align: left;
+}
+
+.ArticleParagraph {
+    text-align: left;
+    align-self: flex-start;
+    margin-top: 0.5em;
+}
+
+.ArticleHeader1 {
+    margin-top: 1em;
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.ArticleHeader2 {
+    margin-top: 1em;
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: large;
+}
+
+.ArticleParagraphListItem {
+    text-align: left;
+    margin-left: 0;
+    text-indent: 0;
+}
+
+.ArticleParagraphNumListItem {
+    margin-left: 0;
+    text-indent: 0;
+}
+
+.ArticleParagraphList {
+    align-self: flex-start;
+    margin: 0;
+    padding-left: 2em;
+}
+
+.ArticleParagraphStrong {
+    font-weight: bold;
+}
+
+.ArticleButton {
+    justify-self: center;
+    font-family: "TT Norms Tochka Extended Medium";
+    font-size: 20px;
+    min-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--light-foreground);
+    color: var(--dark-foreground);
+    padding: var(--arc1) var(--arc2);
+    border-radius: var(--arc1);
+    corner-shape: superellipse(1.6);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+
+.ArticleButtonOther {
+    background-color: var(--light-graybackground);
+    color: var(--light-foreground);
+}
+
+.ArticleLink {
+    text-decoration: none;
+}
+
+.ArticleImage {
+    max-width: 150px;
+    justify-self: center;
+    align-self: center;
+    padding-top: var(--arc2);
+}
+
+.ArticleParagraphSpace {
+    height: var(--arc1);
+}

@@ -1,8 +1,91 @@
 .WIPInfo {
-    margin: 0.3em;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 0.2em;
-    padding: 0.3em;
-    width: max-content;
+    border-radius: var(--arc1);
+    corner-shape: superellipse(1.6);
+    gap: var(--arc1);
+    padding: min(3vh, 3vw);
+    color: var(--light-foreground);
+    background-color: var(--light-background);
+    max-width: 480px;
+    min-width: 300px;
+    min-height: 180px;
+    display: flex;
+    flex-flow: column nowrap;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 0;
+}
+
+.WIPInfoHeader {
+    text-transform: uppercase;
+    justify-self: center;
+}
+
+.WIPINFODisplay {
+    gap: 0.7vh;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.WIPInfoLine {
+    gap: 2vw;
+    display: grid;
+    grid-template-columns: 3fr 5fr 2fr;
+    align-items: center;
+}
+
+.WIPINFOLineHeader {
+}
+
+.WIPInfoLineText {
+    text-align: right;
+    font-weight: bold;
+    color: var(--light-gray-foreground);
+    text-wrap-mode: nowrap;
+}
+
+.WIPInfoLineGauge {
+    gap: 1vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.WIPInfoLineBar {
+    max-height: 0.5vh;
+    display: flex;
+}
+
+.WIPInfoLineBarGrey {
+    background-color: #ddd;
+    border-radius: 0.25vh;
+    corner-shape: superellipse(1.6);
+    width: 100%;
+    height: 0.5vh;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.WIPInfoLineBarGreen {
+    background-color: #5CAD9A;
+    border-radius: 0.25vh;
+    corner-shape: superellipse(1.6);
+    height: 0.5vh;
+    justify-content: center;
+}
+
+.WIPInfoLineBarYellow {
+    background-color: #F0C555;
+    border-radius: 0.25vh;
+    corner-shape: superellipse(1.6);
+    height: 0.5vh;
+    justify-content: center;
+}
+
+.WIPInfoLineBarRed {
+    background-color: #D84D4D;
+    border-radius: 0.25vh;
+    corner-shape: superellipse(1.6);
+    height: 0.5vh;
+    justify-content: center;
 }
