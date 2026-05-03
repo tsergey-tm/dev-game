@@ -11,6 +11,7 @@
     padding: var(--arc2);
     border-radius: var(--arc2);
     corner-shape: superellipse(1.6);
+    font-family: sans-serif;
 }
 
 @container App (width < 1100px) {
@@ -25,10 +26,8 @@
 .RulesInnerBlockContextHeaderBlock {
     padding: 0 var(--arc2);
     display: grid;
-    grid-template-columns: minmax(5em, 10vw) minmax(3em, 100%) minmax(5em, 10vw);
+    grid-template-columns: 1fr;
     align-items: center;
-    min-height: 20vh;
-    font-size: 1.5vh;
     width: stretch;
     container: RulesInnerBlockContextHeaderBlock / inline-size;
 }
@@ -52,8 +51,6 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    min-height: 20vh;
-    font-size: 1.5vh;
 }
 
 @container GameRunner  (width < 600px) {
@@ -76,12 +73,12 @@
     }
 }
 
-.RulesInnerBlockContextHeaderImg {
-    max-width: 80vw;
-    min-width: 100px;
-    min-height: 100px;
+.RulesInnerBlockContextHeaderCaption {
+    margin-bottom: var(--arc1);
     display: grid;
     justify-content: stretch;
+    font-size: xxx-large;
+    font-weight: bold;
 }
 
 
@@ -89,6 +86,7 @@
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    font-size: large;
 }
 
 .RulesInnerBlockContextBlock {
@@ -99,9 +97,12 @@
 
 .RulesInnerBlockContextBlockTitle {
     padding-top: 0.5em;
+    font-size: xx-large;
+    font-weight: bold;
 }
 
 .RulesInnerBlockContextBlockText {
+    font-size: medium;
 }
 
 .RulesButton {

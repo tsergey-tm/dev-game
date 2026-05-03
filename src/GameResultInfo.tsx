@@ -10,11 +10,11 @@ export const GameResultInfo = (props: { onRunGame: SimpleCallbackRef }) => {
 
     return <div className={"GameResult"}>
         <div className={"GameResultInfoBlock"}>
-            <div className={"GameResultInfoBlockText1 Text-TT-Norms-Tochka-Extended-M"}>
+            <div className={"GameResultInfoBlockText1"}>
                 Неделя: {gameResult.week} из 26
             </div>
             <div className={"GameResultInfoBlockBlock"}>
-                <div className={"GameResultInfoBlockText2 Text-ABC-Gravity-XXXL"} title={
+                <div className={"GameResultInfoBlockText2"} title={
                     numberWithThousands(gameResult.income) + " - " + numberWithThousands(gameResult.consumption)
                 }>
                     {numberWithThousands(gameResult.income - gameResult.consumption)}
@@ -24,7 +24,7 @@ export const GameResultInfo = (props: { onRunGame: SimpleCallbackRef }) => {
                 </div>
             </div>
         </div>
-        <div className={"GameResultButton Text-TT-Norms-Tochka-Extended-Medium-XL"} onClick={() => props.onRunGame()}>
+        <div className={"GameResultButton"} onClick={() => props.onRunGame()}>
             Запустить неделю
         </div>
     </div>

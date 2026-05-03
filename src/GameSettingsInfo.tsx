@@ -9,7 +9,7 @@ export const GameSettingsInfo: FC = () => {
     const [width, height] = useWindowSize();
 
     const getFatTable = () => {
-        return <table className={'GameInfoTable Text-TT-Norms-Tochka-Extended-Medium-M'}>
+        return <table className={'GameInfoTable'}>
             <thead>
             <tr>
                 <th>&nbsp;</th>
@@ -62,7 +62,7 @@ export const GameSettingsInfo: FC = () => {
     }
 
     const getThinTable = () => {
-        return <table className={'GameInfoTable Text-TT-Norms-Tochka-Extended-Medium-M'}>
+        return <table className={'GameInfoTable'}>
             <thead>
             <tr>
                 <th>&nbsp;</th>

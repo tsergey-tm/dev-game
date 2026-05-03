@@ -1,7 +1,5 @@
 import React, {useEffect} from 'react';
-import './fonts/font.css';
 import './App.css';
-import './text.css';
 import {GameSettingsContextProvider} from "./GameSettingsContext";
 import {GameResultContextProvider} from "./GameResultContext";
 import {GameRunner} from "./GameRunner";
@@ -14,8 +12,6 @@ import ReactModal from "react-modal";
 function App() {
 
     const handle = useFullScreenHandle();
-
-    const basename = process.env.REACT_APP_ROOT_URL || '/';
 
     const router = createBrowserRouter([
             {
@@ -32,7 +28,7 @@ function App() {
                 element: <Navigate to="/" replace/>
             }
         ], {
-            basename: basename
+            basename: '/dev-game/'
         }
     );
 

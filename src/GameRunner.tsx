@@ -21,7 +21,7 @@ export const GameRunner = (props: { fullScreenHandler: FullScreenHandle }) => {
         setGameResult(calcNextWeek(gameResult, initParams));
     }
 
-    return <div className={"GameRunner Text-TT-Norms-Tochka-Extended-S"}>
+    return <div className={"GameRunner"}>
         <Header fullScreenHandler={props.fullScreenHandler} isLeaderBoard={false}/>
         {gameResult.week < 0 && <Rules onRunGame={() => calcWeek()}/>}
         {gameResult.week >= 0 && gameResult.week < 26 &&

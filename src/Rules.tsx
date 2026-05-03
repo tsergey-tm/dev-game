@@ -2,7 +2,6 @@ import "./Rules.css";
 import React from "react";
 import {GameSettingsInfo} from "./GameSettingsInfo";
 import {SimpleCallbackRef} from "./Constants";
-import {ButtonImg, RulesImg, TargetImg} from "./images";
 import {numberWithThousandsNbsp} from "./GlobalFunctions";
 import {startConsumption} from "./TaskGenerator";
 
@@ -15,28 +14,22 @@ export const Rules = (props: { onRunGame: SimpleCallbackRef }) => {
 
     return <div className={"RulesBlock"}>
         <div className={"RulesInnerBlockContextHeaderBlock"}>
-            <div className={"RulesInnerBlockContextHeaderKeyboard"}>
-                <ButtonImg className={"SvgFillContainer"}/>
-            </div>
             <div className={"RulesInnerBlockContextHeader"}>
-                <div className={"RulesInnerBlockContextHeaderImg"}>
-                    <RulesImg className={"SvgFillContainer"}/>
+                <div className={"RulesInnerBlockContextHeaderCaption"}>
+                    Правила игры
                 </div>
-                <div className={"RulesInnerBlockContextHeaderText3 Text-TT-Norms-Tochka-Extended-Medium-L"}>
+                <div className={"RulesInnerBlockContextHeaderText3"}>
                     У&nbsp;тебя стартап с&nbsp;идеальной командой: все обещают полгода не&nbsp;болеть
                     и&nbsp;не&nbsp;ходить в&nbsp;отпуск.<br/>
                     Управляй заказами так, чтобы за&nbsp;6&nbsp;месяцев выйти в&nbsp;прибыль, иначе проект закроют.
                 </div>
             </div>
-            <div className={"LeaderBoardBlockContextHeaderTarget"}>
-                <TargetImg className={"SvgFillContainer"}/>
-            </div>
         </div>
         <div className={"RulesInnerBlockContextBlock"}>
-            <div className={"RulesInnerBlockContextBlockTitle Text-TT-Norms-Tochka-Extended-DemiBold-XL"}>
+            <div className={"RulesInnerBlockContextBlockTitle"}>
                 Команда
             </div>
-            <div className={"RulesInnerBlockContextBlockText Text-TT-Norms-Tochka-Extended-M"}>
+            <div className={"RulesInnerBlockContextBlockText"}>
                 <p>
                     Есть продакт, 10&nbsp;программистов, 2&nbsp;тестировщика.
                     Тестировщиков мало, поэтому они могут не&nbsp;справиться с&nbsp;нагрузкой.
@@ -47,10 +40,10 @@ export const Rules = (props: { onRunGame: SimpleCallbackRef }) => {
                 </p>
             </div>
             <GameSettingsInfo/>
-            <div className={"RulesInnerBlockContextBlockTitle Text-TT-Norms-Tochka-Extended-DemiBold-XL"}>
+            <div className={"RulesInnerBlockContextBlockTitle"}>
                 Заказы
             </div>
-            <div className={"RulesInnerBlockContextBlockText Text-TT-Norms-Tochka-Extended-M"}>
+            <div className={"RulesInnerBlockContextBlockText"}>
                 <p>
                     Каждые 2&nbsp;недели появляются новые заказы.
                     В&nbsp;карточке заказа указаны: сколько человеко-часов нужно на&nbsp;каждом этапе,
@@ -65,10 +58,10 @@ export const Rules = (props: { onRunGame: SimpleCallbackRef }) => {
                     Все заказы делать не&nbsp;обязательно&nbsp;— ваша задача выжить с командой за полгода.
                 </p>
             </div>
-            <div className={"RulesInnerBlockContextBlockTitle Text-TT-Norms-Tochka-Extended-DemiBold-XL"}>
+            <div className={"RulesInnerBlockContextBlockTitle"}>
                 Процесс
             </div>
-            <div className={"RulesInnerBlockContextBlockText Text-TT-Norms-Tochka-Extended-M"}>
+            <div className={"RulesInnerBlockContextBlockText"}>
                 <p>
                     Работа над&nbsp;заказом идет последовательно: в&nbsp;начале продакт, потом дизайнер,
                     следом редактор, наконец разработчики&nbsp;и за&nbsp;ними тестировщики.<br/>
@@ -80,10 +73,10 @@ export const Rules = (props: { onRunGame: SimpleCallbackRef }) => {
                     Раз в&nbsp;неделю выходит отчёт, где можно менять приоритеты заказов, которые ещё не&nbsp;начаты.
                 </p>
             </div>
-            <div className={"RulesInnerBlockContextBlockTitle Text-TT-Norms-Tochka-Extended-DemiBold-XL"}>
+            <div className={"RulesInnerBlockContextBlockTitle"}>
                 Цель
             </div>
-            <div className={"RulesInnerBlockContextBlockText Text-TT-Norms-Tochka-Extended-M"}>
+            <div className={"RulesInnerBlockContextBlockText"}>
                 <p>
                     Заработать как&nbsp;можно больше денег за&nbsp;полгода разработки,
                     как&nbsp;минимум&nbsp;— выйти в&nbsp;плюс.
@@ -93,13 +86,13 @@ export const Rules = (props: { onRunGame: SimpleCallbackRef }) => {
                     открыл кредитную линию, которую можно тратить только на&nbsp;зарплату.
                 </p>
             </div>
-            <div className={"RulesInnerBlockContextBlockTitle Text-TT-Norms-Tochka-Extended-DemiBold-XL"}>
+            <div className={"RulesInnerBlockContextBlockTitle"}>
                 <p>
                     Успехов!
                 </p>
             </div>
         </div>
-        <div className={"RulesButton Text-TT-Norms-Tochka-Extended-Medium-L"} onClick={() => beginButtonClick()}>
+        <div className={"RulesButton"} onClick={() => beginButtonClick()}>
             Играть!
         </div>
     </div>

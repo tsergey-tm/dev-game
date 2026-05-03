@@ -21,10 +21,10 @@ export const EndGame = () => {
 
     const getBadGameText = () => {
         return <div className={"EndGameInfoText"}>
-            <div className={"EndGameInfoCaption Text-TT-Norms-Tochka-Extended-DemiBold-XXL"}>
+            <div className={"EndGameInfoCaption"}>
                 Как&nbsp;улучшить результат? Читай в&nbsp;нашей статье!
             </div>
-            <div className={"EndGameInfoText1 Text-TT-Norms-Tochka-Extended-Medium-L"}>
+            <div className={"EndGameInfoText1"}>
                 Игра основана на&nbsp;теории ограничений Голдратта.
                 Помни о&nbsp;том, что в&nbsp;любой системе есть ограничение&nbsp;—
                 именно оно и&nbsp;определяет её пропускную способность.
@@ -34,10 +34,10 @@ export const EndGame = () => {
 
     const getGoodGameText = () => {
         return <div className={"EndGameInfoText"}>
-            <div className={"EndGameInfoCaption Text-TT-Norms-Tochka-Extended-DemiBold-XXL"}>
+            <div className={"EndGameInfoCaption"}>
                 У&nbsp;тебя есть нужная сумма, проект жив. Кайф, поздравляем!
             </div>
-            <div className={"EndGameInfoText1 Text-TT-Norms-Tochka-Extended-Medium-L"}>
+            <div className={"EndGameInfoText1"}>
                 Играй ещё&nbsp;— вдруг получится улучшить результат?
             </div>
         </div>;
@@ -52,7 +52,7 @@ export const EndGame = () => {
             </div>
             <div className={"EndGameBlock"}>
                 <EndGameImg className={"EndGameResultHeaderImg"}/>
-                <div className={"EndGameResultProfit Text-ABC-Gravity-XXXL"}>
+                <div className={"EndGameResultProfit"}>
                     {numberWithThousands(profit)}
                 </div>
             </div>

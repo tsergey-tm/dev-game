@@ -38,8 +38,8 @@ export const GameTable: FC = () => {
 
         if (colIndex === 1 && elements.length === 0) {
             elements.push(
-                <div className={"GameTableColEmpty Text-TT-Norms-Tochka-Extended-M"} key={"GameTableColEmpty"}>
-                    <div className={"GameTableColEmptyText Text-TT-Norms-Tochka-Extended-S"}>
+                <div className={"GameTableColEmpty"} key={"GameTableColEmpty"}>
+                    <div className={"GameTableColEmptyText"}>
                         Перетащи задачу сюда, чтобы запланировать.
                         В&nbsp;работу&nbsp;задачи берутся<br/>
                         сверху&nbsp;&#8595;&nbsp;вниз.
@@ -104,12 +104,12 @@ export const GameTable: FC = () => {
                                  (index % 2 === 0 ? " GameTableColHeaderOdd" : " GameTableColHeaderEven") +
                                  (index > 1 ? " GameTableColHideable" : "")
                              }>
-                            <div className={"GameTableColHeaderCaption Text-ABC-Gravity-L"}
+                            <div className={"GameTableColHeaderCaption"}
                                  dangerouslySetInnerHTML={{__html: name}}
                             />
                             {[0, 1, 11].includes(index) &&
                                 <div className={"GameTableColHeaderCounterBlock"}>
-                                    <div className={"GameTableColCounter Text-TT-Norms-Tochka-Extended-S"}>
+                                    <div className={"GameTableColCounter"}>
                                         {gameResult.cols[index].length}
                                     </div>
                                 </div>

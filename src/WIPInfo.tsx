@@ -20,7 +20,7 @@ const WIPInfoLine = (props: { header: string, val: number, total: number }) => {
     }
 
     return <div className={"WIPInfoLine"}>
-        <div className={"WIPInfoLineHeader Text-TT-Norms-Tochka-Extended-M"}>
+        <div className={"WIPInfoLineHeader"}>
             {props.header}
         </div>
         <div className={"WIPInfoLineGauge"}>
@@ -40,7 +40,7 @@ const WIPInfoLine = (props: { header: string, val: number, total: number }) => {
                 </div>
             </div>
         </div>
-        <div className={"WIPInfoLineText Text-TT-Norms-Tochka-Extended-M"}>
+        <div className={"WIPInfoLineText"}>
             {numberWithThousands(props.val)} / {numberWithThousands(props.total)}
         </div>
     </div>;
@@ -52,7 +52,7 @@ export const WIPInfo: FC = () => {
     const {initParams} = useGameSettingsContext();
 
     return <div className={"WIPInfo"}>
-        <div className={"WIPInfoHeader Text-ABC-Gravity-XXL"}>Объём незавершенной работы (WIP)</div>
+        <div className={"WIPInfoHeader"}>Объём незавершенной работы (WIP)</div>
         <div className={"WIPINFODisplay"}>
             <WIPInfoLine header={"Анализ"} val={gameResult.productHours} total={initParams.products.weekPower}/>
             <WIPInfoLine header={"Дизайн"} val={gameResult.designHours} total={initParams.designers.weekPower}/>

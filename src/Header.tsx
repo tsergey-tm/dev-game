@@ -34,7 +34,7 @@ export const Header = (props: { fullScreenHandler: FullScreenHandle, isLeaderBoa
     };
 
     return <div className={"HeaderBlock"}>
-        <div className={"HeaderInnerBlockNameRight Text-ABC-Gravity-XL"}>
+        <div className={"HeaderInnerBlockNameRight"}>
             <GearImg className={"ScreenImg"} onClick={openConfig}/>
             <ReactModal
                 isOpen={configIsOpen}

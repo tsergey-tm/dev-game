@@ -100,8 +100,8 @@ export const TaskInfo: FC<TaskInfoCoord> = (props) => {
         }
     }
 
-    return <div className={"TaskInfo Text-TT-Norms-Tochka-Extended-S"}>
-        <div className={"TaskInfoCaption Text-ABC-Gravity-XL"}>{task.name}</div>
+    return <div className={"TaskInfo"}>
+        <div className={"TaskInfoCaption"}>{task.name}</div>
         {(task.notStarted || task.product > 0) &&
             <div className={"TaskInfoDataLine"}>
                 <div className={"TaskInfoData"}>Анализ</div>
