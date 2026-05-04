@@ -77,7 +77,7 @@ const runSimulation =
 
         // 26 рабочих недель (week 0..25)
         for (let week = 0; week < 26; week++) {
-            // Игрок двигает задачи из только что пополненного backlog в todo
+            // Игрок двигает задачи из только что пополненного backlog в to do
             applyStrategy(gameResult, threshold);
 
             // Команда работает (week >= 0)
