@@ -87,6 +87,7 @@
     margin-right: auto;
     text-align: center;
     font-size: large;
+    line-height: 1.25;
 }
 
 .RulesInnerBlockContextBlock {
@@ -97,12 +98,13 @@
 
 .RulesInnerBlockContextBlockTitle {
     padding-top: 0.5em;
-    font-size: xx-large;
+    font-size: x-large;
     font-weight: bold;
 }
 
 .RulesInnerBlockContextBlockText {
     font-size: medium;
+    line-height: 1.25;
 }
 
 .RulesButton {

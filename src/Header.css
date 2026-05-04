@@ -1,10 +1,8 @@
 .HeaderBlock {
-    flex-shrink: 0;
-    flex-grow: 0;
-    flex-basis: min-content;
-    gap: 1vw;
-    opacity: 1;
-    padding: 2vh 2vw;
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: var(--arc1);
     background-color: var(--light-background);
     color: var(--light-foreground);
     border-radius: var(--arc1);
@@ -12,50 +10,7 @@
     margin: var(--arc1);
     display: grid;
     justify-content: stretch;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-.HeaderInnerBlockNameLeft {
-    text-align: left;
-    text-transform: uppercase;
-    text-wrap: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.HeaderInnerBlockNameLeftLink {
-    cursor: pointer;
-}
-
-.HeaderInnerBlockNameCenter {
-    text-align: center;
-    text-transform: uppercase;
-    color: var(--light-ltforeground);
-    justify-self: center;
-    text-wrap: nowrap;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.HeaderInnerBlockNameCenter > a {
-    color: var(--light-ltforeground);
-    text-decoration: none;
-}
-
-.HeaderInnerBlockNameCenter > a:hover {
-    color: var(--light-ltltforeground);
-    text-decoration: none;
-}
-
-.HeaderInnerBlockNameRight {
-    text-align: right;
-    text-transform: uppercase;
-    justify-self: right;
-    color: var(--light-ltforeground);
-    display: flex;
-    flex-flow: row nowrap;
-    gap: 5px;
+    grid-template-columns: 1fr;
 }
 
 .ScreenImg {

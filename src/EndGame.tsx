@@ -1,6 +1,6 @@
 import './EndGame.css';
 import {useGameResultContext} from "./GameResultContext";
-import {ButtonGoodImg, ButtonImg, EndGameImg, TargetImg, TargetMissImg} from "./images";
+import {TargetImg, TargetMissImg} from "./images";
 import {numberWithThousands} from "./GlobalFunctions";
 import React from "react";
 import {Link} from "react-router";
@@ -46,17 +46,16 @@ export const EndGame = () => {
     return <div className={"EndGame"}>
         <div className={"EndGameHeaderBlock"}>
             <div className={"EndGameResultIcon1"}>
-                {profit < 0 ?
-                    <ButtonImg className={"EndGameResultIcon1Img"}/> :
-                    <ButtonGoodImg className={"EndGameResultIcon1Img"}/>}
             </div>
             <div className={"EndGameBlock"}>
-                <EndGameImg className={"EndGameResultHeaderImg"}/>
+                <div className={"EndGameResultHeader"}>
+                    Прошло полгода,<br/>твой результат
+                </div>
                 <div className={"EndGameResultProfit"}>
                     {numberWithThousands(profit)}
+                    <div className={"EndGameResultIcon2"}>{targetIcon()}</div>
                 </div>
             </div>
-            <div className={"EndGameResultIcon2"}>{targetIcon()}</div>
         </div>
         <div className={"EndGameBlock"}>
             <div className={"EndGameInfo"}>

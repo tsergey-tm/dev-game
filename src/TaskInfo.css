@@ -26,6 +26,9 @@
 .TaskInfoCaption {
     text-transform: uppercase;
     white-space: nowrap;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: x-large;
 }
 
 .TaskInfoDataLine {

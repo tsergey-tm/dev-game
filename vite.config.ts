@@ -11,6 +11,7 @@ export default defineConfig({
     publicDir: 'public',
     server: {
         port: 43210,
+        host: '0.0.0.0',
         open: '/dev-game/',
     }
 });

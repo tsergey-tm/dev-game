@@ -11,4 +11,6 @@
     display: flex;
     flex-flow: column nowrap;
     container: GameRunner / inline-size;
+    padding-top: var(--arc1);
+    padding-bottom: var(--arc1);
 }

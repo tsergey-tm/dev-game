@@ -18,6 +18,8 @@
 .WIPInfoHeader {
     text-transform: uppercase;
     justify-self: center;
+    font-weight: bold;
+    font-size: x-large;
 }
 
 .WIPINFODisplay {
@@ -52,40 +54,40 @@
 }
 
 .WIPInfoLineBar {
-    max-height: 0.5vh;
+    max-height: round(nearest, 0.3em, 1px);
     display: flex;
 }
 
 .WIPInfoLineBarGrey {
     background-color: #ddd;
-    border-radius: 0.25vh;
+    border-radius: 0.25em;
     corner-shape: superellipse(1.6);
     width: 100%;
-    height: 0.5vh;
+    height: round(nearest, 0.3em, 1px);
     justify-content: center;
     align-items: flex-start;
 }
 
 .WIPInfoLineBarGreen {
     background-color: #5CAD9A;
-    border-radius: 0.25vh;
+    border-radius: 0.25em;
     corner-shape: superellipse(1.6);
-    height: 0.5vh;
+    height: round(nearest, 0.3em, 1px);
     justify-content: center;
 }
 
 .WIPInfoLineBarYellow {
     background-color: #F0C555;
-    border-radius: 0.25vh;
+    border-radius: 0.25em;
     corner-shape: superellipse(1.6);
-    height: 0.5vh;
+    height: round(nearest, 0.3em, 1px);
     justify-content: center;
 }
 
 .WIPInfoLineBarRed {
     background-color: #D84D4D;
-    border-radius: 0.25vh;
+    border-radius: 0.25em;
     corner-shape: superellipse(1.6);
-    height: 0.5vh;
+    height: round(nearest, 0.3em, 1px);
     justify-content: center;
 }

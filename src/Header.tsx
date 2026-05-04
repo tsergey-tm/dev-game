@@ -34,40 +34,38 @@ export const Header = (props: { fullScreenHandler: FullScreenHandle, isLeaderBoa
     };
 
     return <div className={"HeaderBlock"}>
-        <div className={"HeaderInnerBlockNameRight"}>
-            <GearImg className={"ScreenImg"} onClick={openConfig}/>
-            <ReactModal
-                isOpen={configIsOpen}
-                onRequestClose={closeConfig}
-                contentLabel="Настройки"
-                parentSelector={() =>
-                    document.querySelector('#AppElement') ||
-                    props.fullScreenHandler.node?.current ||
-                    document.querySelector('#top-layer') ||
-                    document.querySelector('#fullscreen-container') ||
-                    document.querySelector('#root') ||
-                    document.body
-                }
-                className={"ModalConfig"}
-                overlayClassName={"ModalConfigOverlay"}
-            >
-                <label className={"ConfigLabel"}>
-                    <div>Полноэкранный режим</div>
-                    <ReactSwitch
-                        onChange={(v) => setConfigIsFullscreen(v)}
-                        checked={configIsFullscreen}
-                        className="ConfigLabelSwitch"
-                    />
-                </label>
-                <label className={"ConfigLabel"}>
-                    <div>Кнопки управления</div>
-                    <ReactSwitch
-                        onChange={(v) => setConfigIsKeys(v)}
-                        checked={configIsKeys}
-                        className="ConfigLabelSwitch"
-                    />
-                </label>
-            </ReactModal>
-        </div>
+        <GearImg className={"ScreenImg"} onClick={openConfig}/>
+        <ReactModal
+            isOpen={configIsOpen}
+            onRequestClose={closeConfig}
+            contentLabel="Настройки"
+            parentSelector={() =>
+                document.querySelector('#AppElement') ||
+                props.fullScreenHandler.node?.current ||
+                document.querySelector('#top-layer') ||
+                document.querySelector('#fullscreen-container') ||
+                document.querySelector('#root') ||
+                document.body
+            }
+            className={"ModalConfig"}
+            overlayClassName={"ModalConfigOverlay"}
+        >
+            <label className={"ConfigLabel"}>
+                <div>Полноэкранный режим</div>
+                <ReactSwitch
+                    onChange={(v) => setConfigIsFullscreen(v)}
+                    checked={configIsFullscreen}
+                    className="ConfigLabelSwitch"
+                />
+            </label>
+            <label className={"ConfigLabel"}>
+                <div>Кнопки управления</div>
+                <ReactSwitch
+                    onChange={(v) => setConfigIsKeys(v)}
+                    checked={configIsKeys}
+                    className="ConfigLabelSwitch"
+                />
+            </label>
+        </ReactModal>
     </div>
 };

@@ -27,6 +27,10 @@
 
 .GameResultInfoBlockText2 {
     text-align: left;
+    font-size: 3em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
 }
 
 .GameResultButton {
@@ -40,6 +44,7 @@
     display: grid;
     place-items: center;
     cursor: pointer;
+    font-size: x-large;
 
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */

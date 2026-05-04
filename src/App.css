@@ -6,6 +6,7 @@
 
 html {
     background-color: #8f4aff;
+    font-family: sans-serif;
 }
 
 /* Safari 15.1+ has a bug where the overscroll-behavior property is not working as expected when
@@ -19,10 +20,12 @@ html {
 
 body {
     background-color: #8f4aff;
+    font-family: sans-serif;
 }
 
 .FullScreenContainer {
     background-color: #8f4aff;
+    font-family: sans-serif;
 }
 
 .SvgFillContainer {

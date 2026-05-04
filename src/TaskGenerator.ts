@@ -1,7 +1,7 @@
 import {Task} from "./GameResultContext";
 import {getRandomElementAndRemove} from "./GlobalFunctions";
 
-export const startConsumption = 85000;
+export const startConsumption = 80000;
 
 export const licenses = [10000, 5000, 1000];
 
