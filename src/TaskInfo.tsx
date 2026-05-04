@@ -18,7 +18,7 @@ export const TaskInfo: FC<TaskInfoCoord> = (props) => {
     const {gameResult} = useGameResultContext();
     const {userSettings} = useUserSettingsContext();
 
-    const task = gameResult.cols[props.col][props.index];
+    const task = gameResult!.cols[props.col][props.index];
 
     const moveTop = (col: number, index: number) => {
         if (index > 0) {
@@ -33,23 +33,23 @@ export const TaskInfo: FC<TaskInfoCoord> = (props) => {
     };
 
     const moveDown = (col: number, index: number) => {
-        if (index < gameResult.cols[col].length - 1) {
+        if (index < gameResult!.cols[col].length - 1) {
             props.moveTask(col, index, col, index + 1);
         }
     };
 
     const moveBottom = (col: number, index: number) => {
-        if (index < gameResult.cols[col].length - 1) {
-            props.moveTask(col, index, col, gameResult.cols[col].length - 1);
+        if (index < gameResult!.cols[col].length - 1) {
+            props.moveTask(col, index, col, gameResult!.cols[col].length - 1);
         }
     };
 
     const moveToDo = (col: number, index: number) => {
-        props.moveTask(col, index, col + 1, gameResult.cols[col + 1].length);
+        props.moveTask(col, index, col + 1, gameResult!.cols[col + 1].length);
     };
 
     const moveBacklog = (col: number, index: number) => {
-        props.moveTask(col, index, col - 1, gameResult.cols[col - 1].length);
+        props.moveTask(col, index, col - 1, gameResult!.cols[col - 1].length);
     };
 
     const getButtons = (props: TaskInfoCoord) => {
@@ -128,10 +128,15 @@ export const TaskInfo: FC<TaskInfoCoord> = (props) => {
         }
         {(task.notStarted || task.tester > 0) &&
             <div className={"TaskInfoDataLine"}>
-                <div
-                    className={"TaskInfoData"}>Тестирование
-                </div>
+                <div className={"TaskInfoData"}>Тестирование</div>
                 <div className={"TaskInfoDataNum"}>{task.tester}</div>
+            </div>
+        }
+        {(task.notStarted && task.license > 0) &&
+            <div className={"TaskInfoDataLine"}>
+                <div className={"TaskInfoData"}>Лицензия</div>
+                <div className={"TaskInfoDataNum"}
+                     dangerouslySetInnerHTML={{"__html": numberWithThousandsNbsp(task.license)}}/>
             </div>
         }
         {(task.notStarted || task.product + task.designer + task.editor + task.developer + task.tester > 0) &&
@@ -140,14 +145,14 @@ export const TaskInfo: FC<TaskInfoCoord> = (props) => {
         <div className={"TaskInfoDataLine"}>
             <div className={"TaskInfoData"}>Доход</div>
             <div className={"TaskInfoDataNum TaskInfoDataMoney"}
-                 dangerouslySetInnerHTML={{"__html": numberWithThousandsNbsp(task.money)}}/>
+                 dangerouslySetInnerHTML={{"__html": numberWithThousandsNbsp(task.money + task.license)}}/>
         </div>
         {task.notStarted &&
             <>
                 <div className={"TaskInfoDataLine"}>
                     <div className={"TaskInfoData"}>Себестоимость</div>
                     <div className={"TaskInfoDataNum"}
-                         dangerouslySetInnerHTML={{"__html": numberWithThousandsNbsp(task.primeCost)}}/>
+                         dangerouslySetInnerHTML={{"__html": numberWithThousandsNbsp(task.primeCost + task.license)}}/>
                 </div>
                 {userSettings.showKeys && getButtons(props)}
             </>

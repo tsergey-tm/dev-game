@@ -3,6 +3,8 @@ import {getRandomElementAndRemove} from "./GlobalFunctions";
 
 export const startConsumption = 85000;
 
+export const licenses = [10000, 5000, 1000];
+
 export const taskGeneratorData = [
     [10, 2, 3, 320, 0, 2000],
     [10, 2, 2, 260, 0, 2000],
@@ -116,12 +118,16 @@ const blocks: number[][] = [
 
 const firstDeal: number[] = [51, 44, 25, 12];
 
-const makeTask = (index: number, data: number[]): Task => {
+const generateLicense = (isHard: boolean): number => {
+    return isHard ? licenses[Math.floor(Math.random() * licenses.length)] : 0;
+};
 
-    return new Task(index, data[0], data[1], data[2], data[3], data[4], data[5]);
+const makeTask = (index: number, data: number[], isHard: boolean): Task => {
+    const randomLicense = generateLicense(isHard);
+    return new Task(index, data[0], data[1], data[2], data[3], data[4], data[5], randomLicense);
 }
 
-const taskGenerator = (): Task[][] => {
+const taskGenerator = (isHard: boolean): Task[][] => {
 
     const res: Task[][] = [];
 
@@ -136,10 +142,10 @@ const taskGenerator = (): Task[][] => {
     let index = 0;
 
     res.push([
-        makeTask(index++, taskGeneratorData[getRandomElementAndRemove(firstDealData)!]),
-        makeTask(index++, taskGeneratorData[getRandomElementAndRemove(firstDealData)!]),
-        makeTask(index++, taskGeneratorData[getRandomElementAndRemove(firstDealData)!]),
-        makeTask(index++, taskGeneratorData[getRandomElementAndRemove(firstDealData)!])
+        makeTask(index++, taskGeneratorData[getRandomElementAndRemove(firstDealData)!], isHard),
+        makeTask(index++, taskGeneratorData[getRandomElementAndRemove(firstDealData)!], isHard),
+        makeTask(index++, taskGeneratorData[getRandomElementAndRemove(firstDealData)!], isHard),
+        makeTask(index++, taskGeneratorData[getRandomElementAndRemove(firstDealData)!], isHard)
     ]);
 
     for (let i = 1; i < 26; i++) {
@@ -152,10 +158,10 @@ const taskGenerator = (): Task[][] => {
             ];
 
             res.push([
-                makeTask(index++, taskGeneratorData[getRandomElementAndRemove(d)!]),
-                makeTask(index++, taskGeneratorData[getRandomElementAndRemove(d)!]),
-                makeTask(index++, taskGeneratorData[getRandomElementAndRemove(d)!]),
-                makeTask(index++, taskGeneratorData[getRandomElementAndRemove(d)!])
+                makeTask(index++, taskGeneratorData[getRandomElementAndRemove(d)!], isHard),
+                makeTask(index++, taskGeneratorData[getRandomElementAndRemove(d)!], isHard),
+                makeTask(index++, taskGeneratorData[getRandomElementAndRemove(d)!], isHard),
+                makeTask(index++, taskGeneratorData[getRandomElementAndRemove(d)!], isHard)
             ]);
         } else {
             res.push([]);

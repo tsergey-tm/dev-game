@@ -1,15 +1,15 @@
 import "./Rules.css";
 import React from "react";
 import {GameSettingsInfo} from "./GameSettingsInfo";
-import {SimpleCallbackRef} from "./Constants";
+import {LeveledCallbackRef} from "./Constants";
 import {numberWithThousandsNbsp} from "./GlobalFunctions";
 import {startConsumption} from "./TaskGenerator";
 
-export const Rules = (props: { onRunGame: SimpleCallbackRef }) => {
+export const Rules = (props: { onRunGame: LeveledCallbackRef }) => {
 
-    const beginButtonClick = () => {
+    const beginButtonClick = (isHard: boolean) => {
 
-        props.onRunGame();
+        props.onRunGame(isHard);
     };
 
     return <div className={"RulesBlock"}>
@@ -92,8 +92,11 @@ export const Rules = (props: { onRunGame: SimpleCallbackRef }) => {
                 </p>
             </div>
         </div>
-        <div className={"RulesButton"} onClick={() => beginButtonClick()}>
-            Играть!
+        <div className={"RulesButton"} onClick={() => beginButtonClick(false)}>
+            Играть на лёгком уровне!
+        </div>
+        <div className={"RulesButton"} onClick={() => beginButtonClick(true)}>
+            Играть на сложном уровне!
         </div>
     </div>
 }

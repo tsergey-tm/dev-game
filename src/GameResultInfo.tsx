@@ -11,13 +11,13 @@ export const GameResultInfo = (props: { onRunGame: SimpleCallbackRef }) => {
     return <div className={"GameResult"}>
         <div className={"GameResultInfoBlock"}>
             <div className={"GameResultInfoBlockText1"}>
-                Неделя: {gameResult.week} из 26
+                Неделя: {gameResult!.week} из 26
             </div>
             <div className={"GameResultInfoBlockBlock"}>
                 <div className={"GameResultInfoBlockText2"} title={
-                    numberWithThousands(gameResult.income) + " - " + numberWithThousands(gameResult.consumption)
+                    numberWithThousands(gameResult!.income) + " - " + numberWithThousands(gameResult!.consumption)
                 }>
-                    {numberWithThousands(gameResult.income - gameResult.consumption)}
+                    {numberWithThousands(gameResult!.income - gameResult!.consumption)}
                 </div>
                 <div className={"GameResultInfoBlockCoin"}>
                     <CoinImg className={"SvgFillContainer"}/>

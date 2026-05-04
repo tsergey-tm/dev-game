@@ -74,7 +74,7 @@ export const GameTable: FC = () => {
 
     const moveTask = (colFrom: number, indexFrom: number, colTo: number, indexTo: number) => {
 
-        const newGameResult = gameResult.clone();
+        const newGameResult = gameResult!.clone();
 
         newGameResult.cols[colTo].splice(indexTo, 0, ...newGameResult.cols[colFrom].splice(indexFrom, 1));
 
@@ -97,7 +97,7 @@ export const GameTable: FC = () => {
         <div className={"GameTable"}>
             <DragDropContext
                 onDragEnd={(result: DropResult) => onDrop(result)}>
-                {gameResult.colNames
+                {gameResult!.colNames
                     .map((name, index) =>
                         <div key={"GameTableColHeader" + index}
                              className={"GameTableColHeader" +
@@ -110,13 +110,13 @@ export const GameTable: FC = () => {
                             {[0, 1, 11].includes(index) &&
                                 <div className={"GameTableColHeaderCounterBlock"}>
                                     <div className={"GameTableColCounter"}>
-                                        {gameResult.cols[index].length}
+                                        {gameResult!.cols[index].length}
                                     </div>
                                 </div>
                             }
                         </div>
                     )}
-                {gameResult.cols
+                {gameResult!.cols
                     .map((tasks, colIndex) =>
                         <div key={"GameTableCol" + colIndex}
                              className={"GameTableColTasks" +

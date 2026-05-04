@@ -108,6 +108,7 @@
 .RulesButton {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: var(--arc1);
     background-color: var(--light-foreground);
     color: var(--dark-foreground);
     padding: var(--arc1) calc(var(--arc1) * 4);

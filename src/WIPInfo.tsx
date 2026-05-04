@@ -54,11 +54,11 @@ export const WIPInfo: FC = () => {
     return <div className={"WIPInfo"}>
         <div className={"WIPInfoHeader"}>Объём незавершенной работы (WIP)</div>
         <div className={"WIPINFODisplay"}>
-            <WIPInfoLine header={"Анализ"} val={gameResult.productHours} total={initParams.products.weekPower}/>
-            <WIPInfoLine header={"Дизайн"} val={gameResult.designHours} total={initParams.designers.weekPower}/>
-            <WIPInfoLine header={"Редактура"} val={gameResult.editorHours} total={initParams.editors.weekPower}/>
-            <WIPInfoLine header={"Разработка"} val={gameResult.devHours} total={initParams.developers.weekPower}/>
-            <WIPInfoLine header={"Тестирование"} val={gameResult.testHours} total={initParams.testers.weekPower}/>
+            <WIPInfoLine header={"Анализ"} val={gameResult!.productHours} total={initParams.products.weekPower}/>
+            <WIPInfoLine header={"Дизайн"} val={gameResult!.designHours} total={initParams.designers.weekPower}/>
+            <WIPInfoLine header={"Редактура"} val={gameResult!.editorHours} total={initParams.editors.weekPower}/>
+            <WIPInfoLine header={"Разработка"} val={gameResult!.devHours} total={initParams.developers.weekPower}/>
+            <WIPInfoLine header={"Тестирование"} val={gameResult!.testHours} total={initParams.testers.weekPower}/>
         </div>
     </div>;
 };

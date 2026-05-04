@@ -1,5 +1,5 @@
-import taskGenerator, { taskGeneratorData } from '../TaskGenerator';
-import { Task } from '../GameResultContext';
+import taskGenerator, {taskGeneratorData} from '../TaskGenerator';
+import {Task} from '../GameResultContext';
 
 /** Проверяет, что строка данных data совпадает с полями Task */
 const taskMatchesData = (task: Task, data: number[]): boolean =>
@@ -19,7 +19,7 @@ const signature = (result: ReturnType<typeof taskGenerator>): string =>
 
 describe('taskGenerator', () => {
     it('все возвращаемые Task содержат данные из taskGeneratorData', () => {
-        const result = taskGenerator();
+        const result = taskGenerator(false);
         const allTasks = result.flat();
 
         allTasks.forEach((task) => {
@@ -29,7 +29,7 @@ describe('taskGenerator', () => {
     });
 
     it('каждая строка taskGeneratorData используется не более одного раза за вызов', () => {
-        const result = taskGenerator();
+        const result = taskGenerator(false);
         const allTasks = result.flat();
 
         const usedDataIndices: number[] = [];
@@ -45,7 +45,7 @@ describe('taskGenerator', () => {
     });
 
     it('индексы Task назначены последовательно начиная с 0', () => {
-        const result = taskGenerator();
+        const result = taskGenerator(false);
         const allTasks = result.flat();
 
         allTasks.forEach((task, i) => {
@@ -56,7 +56,7 @@ describe('taskGenerator', () => {
     it('порядок задач в разных вызовах taskGenerator отличается', () => {
         // Запускаем 10 раз и проверяем, что хотя бы две сигнатуры различаются
         const RUNS = 10;
-        const signatures = Array.from({ length: RUNS }, () => signature(taskGenerator()));
+        const signatures = Array.from({length: RUNS}, () => signature(taskGenerator(false)));
         const uniqueSignatures = new Set(signatures);
 
         expect(uniqueSignatures.size).toBeGreaterThan(1);

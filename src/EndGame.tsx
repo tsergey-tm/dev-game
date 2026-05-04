@@ -9,7 +9,7 @@ export const EndGame = () => {
 
     const {gameResult} = useGameResultContext();
 
-    const profit = gameResult.income - gameResult.consumption;
+    const profit = gameResult!.income - gameResult!.consumption;
 
     const targetIcon = () => {
         if (profit >= 0) {

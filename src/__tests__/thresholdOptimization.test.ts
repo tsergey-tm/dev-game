@@ -65,26 +65,27 @@ const applyStrategyTCU: ApplyStrategy = (gameResult: GameResult, threshold: numb
  *
  * Возвращает итоговую прибыль (income - consumption) после 26 недель.
  */
-const runSimulation = (threshold: number, applyStrategy: ApplyStrategy): number => {
-    // Инициализация игры
-    let gameResult = new GameResult(taskGenerator());
-    const initParams = new InitParams();
+const runSimulation =
+    (threshold: number, applyStrategy: ApplyStrategy, isHard: boolean): number => {
+        // Инициализация игры
+        let gameResult = new GameResult(taskGenerator(isHard), isHard);
+        const initParams = new InitParams();
 
-    // Первый вызов: week -1 -> 0, добавляет начальные задачи в cols[0]
-    // Ничего не делает кроме увеличения week и добавления задач
-    gameResult = calcNextWeek(gameResult, initParams);
-
-    // 26 рабочих недель (week 0..25)
-    for (let week = 0; week < 26; week++) {
-        // Игрок двигает задачи из только что пополненного backlog в todo
-        applyStrategy(gameResult, threshold);
-
-        // Команда работает (week >= 0)
+        // Первый вызов: week -1 -> 0, добавляет начальные задачи в cols[0]
+        // Ничего не делает кроме увеличения week и добавления задач
         gameResult = calcNextWeek(gameResult, initParams);
-    }
 
-    return gameResult.income - gameResult.consumption;
-};
+        // 26 рабочих недель (week 0..25)
+        for (let week = 0; week < 26; week++) {
+            // Игрок двигает задачи из только что пополненного backlog в todo
+            applyStrategy(gameResult, threshold);
+
+            // Команда работает (week >= 0)
+            gameResult = calcNextWeek(gameResult, initParams);
+        }
+
+        return gameResult.income - gameResult.consumption;
+    };
 
 beforeEach(() => {
     jest.spyOn(global.Math, 'random').mockReturnValue(0.5);
@@ -131,13 +132,13 @@ const applyStrategyCostPrice: ApplyStrategy = (gameResult: GameResult, threshold
 
 
 describe('Оптимальный порог testHours для разных стратегий', () => {
-    test('Стратегия проход на ограничение', () => {
+    test('Стратегия проход на ограничение на простом уровне', () => {
 
         let maxProfit = -Infinity;
         let bestThreshold = 0;
 
         for (let threshold = 80; threshold <= 80 * 5; threshold += 10) {
-            const profit = runSimulation(threshold, applyStrategyTCU);
+            const profit = runSimulation(threshold, applyStrategyTCU, false);
 
             process.stdout.write(`Порог ${threshold} ч → прибыль: ${profit}\n`);
 
@@ -155,13 +156,60 @@ describe('Оптимальный порог testHours для разных стр
 
     });
 
-    test('Стратегия деньги на себестоимость', () => {
+    test('Стратегия деньги на себестоимость на простом уровне', () => {
 
         let maxProfit = -Infinity;
         let bestThreshold = 0;
 
         for (let threshold = 80; threshold <= 80 * 5; threshold += 10) {
-            const profit = runSimulation(threshold, applyStrategyCostPrice);
+            const profit = runSimulation(threshold, applyStrategyCostPrice, false);
+
+            process.stdout.write(`Порог ${threshold} ч → прибыль: ${profit}\n`);
+
+            if (profit > maxProfit) {
+                maxProfit = profit;
+                bestThreshold = threshold;
+            }
+        }
+
+        process.stdout.write('\n');
+        process.stdout.write('=== МАКСИМАЛЬНЫЙ РЕЗУЛЬТАТ ===\n');
+        process.stdout.write(`Оптимальный порог: ${bestThreshold} часов\n`);
+        process.stdout.write(`Максимальная прибыль: ${maxProfit}\n`);
+        process.stdout.write('==============================\n');
+    });
+
+    test('Стратегия проход на ограничение на сложном уровне', () => {
+
+        let maxProfit = -Infinity;
+        let bestThreshold = 0;
+
+        for (let threshold = 80; threshold <= 80 * 5; threshold += 10) {
+            const profit = runSimulation(threshold, applyStrategyTCU, true);
+
+            process.stdout.write(`Порог ${threshold} ч → прибыль: ${profit}\n`);
+
+            if (profit > maxProfit) {
+                maxProfit = profit;
+                bestThreshold = threshold;
+            }
+        }
+
+        process.stdout.write('\n');
+        process.stdout.write('=== МАКСИМАЛЬНЫЙ РЕЗУЛЬТАТ ===\n');
+        process.stdout.write(`Оптимальный порог: ${bestThreshold} часов\n`);
+        process.stdout.write(`Максимальная прибыль: ${maxProfit}\n`);
+        process.stdout.write('==============================\n');
+
+    });
+
+    test('Стратегия деньги на себестоимость на сложном уровне', () => {
+
+        let maxProfit = -Infinity;
+        let bestThreshold = 0;
+
+        for (let threshold = 80; threshold <= 80 * 5; threshold += 10) {
+            const profit = runSimulation(threshold, applyStrategyCostPrice, true);
 
             process.stdout.write(`Порог ${threshold} ч → прибыль: ${profit}\n`);
 

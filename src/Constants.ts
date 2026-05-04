@@ -1,4 +1,5 @@
 export type SimpleCallbackRef = () => void;
+export type LeveledCallbackRef = (isHard: boolean) => void;
 
 export class StepInitParam {
     twoHourPower: number;
