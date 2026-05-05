@@ -87,14 +87,6 @@ const runSimulation =
         return gameResult.income - gameResult.consumption;
     };
 
-beforeEach(() => {
-    jest.spyOn(global.Math, 'random').mockReturnValue(0.5);
-});
-
-afterEach(() => {
-    jest.spyOn(global.Math, 'random').mockRestore();
-});
-
 /**
  * Стратегия по себестоимости:
  * - пока testHours < threshold, добавляем задачи по убыванию приоритета money/primeCost
@@ -132,12 +124,24 @@ const applyStrategyCostPrice: ApplyStrategy = (gameResult: GameResult, threshold
 
 
 describe('Оптимальный порог testHours для разных стратегий', () => {
+
+    beforeEach(() => {
+        jest.spyOn(global.Math, 'random').mockReturnValue(0.5);
+    });
+
+    afterEach(() => {
+        jest.spyOn(global.Math, 'random').mockRestore();
+    });
+
+    const minThreshold = 80;
+    const maxThreshold = 800;
+
     test('Стратегия проход на ограничение на простом уровне', () => {
 
         let maxProfit = -Infinity;
         let bestThreshold = 0;
 
-        for (let threshold = 80; threshold <= 80 * 5; threshold += 10) {
+        for (let threshold = minThreshold; threshold <= maxThreshold; threshold += 10) {
             const profit = runSimulation(threshold, applyStrategyTCU, false);
 
             process.stdout.write(`Порог ${threshold} ч → прибыль: ${profit}\n`);
@@ -161,7 +165,7 @@ describe('Оптимальный порог testHours для разных стр
         let maxProfit = -Infinity;
         let bestThreshold = 0;
 
-        for (let threshold = 80; threshold <= 80 * 5; threshold += 10) {
+        for (let threshold = minThreshold; threshold <= maxThreshold; threshold += 10) {
             const profit = runSimulation(threshold, applyStrategyCostPrice, false);
 
             process.stdout.write(`Порог ${threshold} ч → прибыль: ${profit}\n`);
@@ -184,7 +188,7 @@ describe('Оптимальный порог testHours для разных стр
         let maxProfit = -Infinity;
         let bestThreshold = 0;
 
-        for (let threshold = 80; threshold <= 80 * 5; threshold += 10) {
+        for (let threshold = minThreshold; threshold <= maxThreshold; threshold += 10) {
             const profit = runSimulation(threshold, applyStrategyTCU, true);
 
             process.stdout.write(`Порог ${threshold} ч → прибыль: ${profit}\n`);
@@ -208,7 +212,7 @@ describe('Оптимальный порог testHours для разных стр
         let maxProfit = -Infinity;
         let bestThreshold = 0;
 
-        for (let threshold = 80; threshold <= 80 * 5; threshold += 10) {
+        for (let threshold = minThreshold; threshold <= maxThreshold; threshold += 10) {
             const profit = runSimulation(threshold, applyStrategyCostPrice, true);
 
             process.stdout.write(`Порог ${threshold} ч → прибыль: ${profit}\n`);
@@ -224,5 +228,72 @@ describe('Оптимальный порог testHours для разных стр
         process.stdout.write(`Оптимальный порог: ${bestThreshold} часов\n`);
         process.stdout.write(`Максимальная прибыль: ${maxProfit}\n`);
         process.stdout.write('==============================\n');
+    });
+});
+
+describe('Проверка диапазонов при случайной игре', () => {
+
+    const repeatCount = 100;
+    const minThreshold = 200;
+    const maxThreshold = 300;
+
+    beforeEach(() => {
+        jest.spyOn(global.Math, 'random').mockRestore();
+    });
+
+    afterEach(() => {
+        jest.spyOn(global.Math, 'random').mockRestore();
+    });
+
+    test('Стратегия проход на ограничение на простом уровне', () => {
+        for (let threshold = minThreshold; threshold <= maxThreshold; threshold += 10) {
+            const profits = [];
+            for (let i = 0; i < repeatCount; i++) {
+                const profit = runSimulation(threshold, applyStrategyTCU, false);
+                profits.push(profit);
+            }
+            const minProfit = profits.reduce((min, p) => Math.min(min, p), Infinity);
+            process.stdout.write(`Порог ${threshold} ч → прибыль: ${minProfit}\n`);
+            expect(profits.every(p => p >= 0)).toBe(true);
+        }
+    });
+
+    test('Стратегия деньги на себестоимость на простом уровне', () => {
+        for (let threshold = minThreshold; threshold <= maxThreshold; threshold += 10) {
+            const profits = [];
+            for (let i = 0; i < repeatCount; i++) {
+                const profit = runSimulation(threshold, applyStrategyCostPrice, false);
+                profits.push(profit);
+            }
+            const maxProfit = profits.reduce((max, p) => Math.max(max, p), -Infinity);
+            process.stdout.write(`Порог ${threshold} ч → прибыль: ${maxProfit}\n`);
+            expect(profits.every(p => p <= 0)).toBe(true);
+        }
+    });
+
+    test('Стратегия проход на ограничение на сложном уровне', () => {
+        for (let threshold = minThreshold; threshold <= maxThreshold; threshold += 10) {
+            const profits = [];
+            for (let i = 0; i < repeatCount; i++) {
+                const profit = runSimulation(threshold, applyStrategyTCU, true);
+                profits.push(profit);
+            }
+            const minProfit = profits.reduce((min, p) => Math.min(min, p), Infinity);
+            process.stdout.write(`Порог ${threshold} ч → прибыль: ${minProfit}\n`);
+            expect(profits.every(p => p >= 0)).toBe(true);
+        }
+    });
+
+    test('Стратегия деньги на себестоимость на сложном уровне', () => {
+        for (let threshold = minThreshold; threshold <= maxThreshold; threshold += 10) {
+            const profits = [];
+            for (let i = 0; i < repeatCount; i++) {
+                const profit = runSimulation(threshold, applyStrategyCostPrice, true);
+                profits.push(profit);
+            }
+            const maxProfit = profits.reduce((max, p) => Math.max(max, p), -Infinity);
+            process.stdout.write(`Порог ${threshold} ч → прибыль: ${maxProfit}\n`);
+            expect(profits.every(p => p <= 0)).toBe(true);
+        }
     });
 });
