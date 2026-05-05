@@ -1,6 +1,6 @@
 import {Link} from "react-router";
 import './Article.css';
-import {ButtonCheckImg, ButtonQuestionImg, QuoteImg} from "./images";
+import {QuoteImg} from "./images";
 
 
 export const Article = () => {
@@ -9,9 +9,7 @@ export const Article = () => {
     return <div className={"Article"}>
         <div className={"ArticleContainer"}>
             <div className={"ArticleContainerBlock"}>
-                <div className={"ArticleCaption"}>Не копай, как перекроить команду, а&nbsp;поменяй
-                    подход к&nbsp;бэклогу
-                </div>
+                <div className={"ArticleCaption"}>Так ли важно ограничение?</div>
                 <div className={"ArticleNotice"}>
                     Эта статья об&nbsp;<a href={"../"}>игре</a>. Сначала сыграй в&nbsp;неё, чтобы лучше увидеть разницу
                     между обычным подходом и&nbsp;тем, что мы предлагаем.
@@ -64,9 +62,6 @@ export const Article = () => {
                 </ul>
                 <div className={"ArticleParagraph"}>
                     Предлагаем другой путь: бесплатно, без&nbsp;лишних усилий, нужно лишь немного матчасти.
-                </div>
-                <div className={"ArticleImage"}>
-                    <ButtonQuestionImg className={"SvgFillContainer"}/>
                 </div>
                 <div className={"ArticleHeader1"}>Немного теории</div>
                 <div className={"ArticleParagraph"}>Вспомним теорию ограничений Элияху Голдратта.</div>
@@ -138,9 +133,6 @@ export const Article = () => {
                     Идеальная задача&nbsp;— та, над&nbsp;которой ограничение вообще не&nbsp;работает. То&nbsp;есть
                     деньги получаем, а&nbsp;ресурс не&nbsp;тратим.
                 </div>
-                <div className={"ArticleImage"}>
-                    <ButtonCheckImg className={"SvgFillContainer"}/>
-                </div>
                 <div className={"ArticleHeader1"}>Что в&nbsp;итоге?</div>
                 <div className={"ArticleParagraph"}>Вот три простых правила:
                     <ol className={"ArticleParagraphList"}>
@@ -166,12 +158,6 @@ export const Article = () => {
                     <div className={"ArticleButton"}>Играть!</div>
                 </Link>
                 <div className={"ArticleParagraphSpace"}>&nbsp;</div>
-                <Link
-                    to="https://bryzgalova.ru/fundamentalstoc/u-vas-net-vybora-libo-vy-upravlyaete-ogranicheniem-libo-ono-upravlyaet-vami"
-                    target="_blank" className={"ArticleLink"}>
-                    <div className={"ArticleButton ArticleButtonOther"}>Хочу копать дальше
-                    </div>
-                </Link>
             </div>
         </div>
     </div>;

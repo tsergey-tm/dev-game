@@ -233,9 +233,9 @@ describe('Оптимальный порог testHours для разных стр
 
 describe('Проверка диапазонов при случайной игре', () => {
 
-    const repeatCount = 100;
-    const minThreshold = 200;
-    const maxThreshold = 300;
+    const repeatCount = 200;
+    const minThreshold = 240;
+    const maxThreshold = 280;
 
     beforeEach(() => {
         jest.spyOn(global.Math, 'random').mockRestore();

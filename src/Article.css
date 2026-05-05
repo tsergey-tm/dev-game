@@ -14,7 +14,6 @@
     color: var(--light-foreground);
     margin: var(--arc2) auto;
 
-    font-family: "TT Norms Tochka Extended";
 }
 
 .ArticleContainerBlock {
@@ -63,7 +62,6 @@
     font-weight: bold;
     margin-bottom: var(--arc2);
     text-transform: uppercase;
-    font-family: ABC Gravity Compressed Cyrillic;
     font-size: 5vh;
     line-height: 90%;
     letter-spacing: 2%;
@@ -154,7 +152,6 @@
 
 .ArticleButton {
     justify-self: center;
-    font-family: "TT Norms Tochka Extended Medium";
     font-size: 20px;
     min-width: 200px;
     margin-left: auto;

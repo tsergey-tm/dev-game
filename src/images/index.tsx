@@ -13,9 +13,6 @@ import KeysLeftImg from './keysleft.svg?react';
 import KeysRightImg from './keysright.svg?react';
 import GearImg from './gear.svg?react';
 import QuoteImg from './quote.svg?react';
-import ButtonQuestionImg from './buttonquestion.svg?react';
-import ButtonCheckImg from './buttoncheck.svg?react';
-
 
 export {
     CoinImg,
@@ -32,7 +29,5 @@ export {
     KeysRightImg,
     ButtonGoodImg,
     GearImg,
-    QuoteImg,
-    ButtonQuestionImg,
-    ButtonCheckImg
+    QuoteImg
 };
